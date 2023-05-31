@@ -1,0 +1,77 @@
+.background-attach-img{
+    background-image: url("../../image/login-bg.jpg");
+    height: 100vh;
+}
+.logincontainer{
+    background-image: url("../../image/login-bg.jpg");
+    /* background-image: linear-gradient(45deg, #c6ffdd, #fbd786, #f7797d); */
+    height: 100vh;
+    background-size: cover;
+    padding-top: 142px;
+}
+
+.login-card{
+    margin-left: 32px;
+    border-radius: 28px;
+    margin-right: 32px;
+    /* box-shadow: #c17474 -3px 0px 17px 1px !important; */
+}
+.login-footer-title{
+    text-align: center;
+    /* margin-top: 25%; */
+    color: #1878af;
+}
+.mybtn:hover {
+    background: linear-gradient(240deg, #009FFD, #2A2A72)!important;
+    color: white!important;
+    transform: scale(1.1);
+}
+.mybtn {
+    background: linear-gradient(240deg, #009FFD, #2A2A72)!important;
+    color: white!important;
+    text-align: center;
+    width: 100px;
+    border-radius: 23px;
+    padding: -10px;
+    padding-top: 0px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.mycards {
+    border-left: 4px solid #ed1984;
+    border-top: 4px solid #ed1984;
+    border-bottom: 4px solid #1878af;
+    border-right: 4px solid #1878af;
+}
+.title-login{
+    text-align: center;
+    background: -webkit-linear-gradient(#2962ff,#df1279);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 29px;
+    font-family: auto;
+}
+.login-logo{
+    height: 134px;
+    width: 134px;
+    position: absolute;
+    top: -71px;
+    right: 0;
+    left: 34%;
+}
+
+@media only screen and (max-width: 768px){
+    
+}
+
+@media only screen and (min-width: 768px){
+    
+}
+
+@media only screen and (min-width: 590px) and (max-width: 753px){
+    
+}
+
+@media only screen and (min-width: 320px) and (max-width: 416px){
+   
+}

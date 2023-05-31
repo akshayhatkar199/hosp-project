@@ -1,0 +1,28 @@
+
+.rdt_TableHeadRow .rdt_TableCol{
+    border-right: 1px solid #ddd;
+    border-top:  1px solid #ddd;
+    
+  }
+  .rdt_Table{
+    border-left:  1px solid #ddd;   
+    
+  }
+  .jWpMhA {
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    min-height: 39px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: #c1c1c1 !important;
+    color: #181717 !important;
+}
+.active-btt{
+  background-color: #adcdbe;
+}
+.table-invoice{
+  width: 100%;
+  overflow-x:auto;
+}
