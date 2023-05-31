@@ -314,12 +314,12 @@ const Casepaper = () => {
             // navigate('/PationtDetails');
             // navigate('/Casepaper');
             setloadingmodel(false);
-            swal('success', 'success fully', 'success');
+            swal('success', ' Patient Add success fully', 'success');
         });
 
         (err) => {
             console.log(err);
-            swal('err', 'success fully', 'err');
+            swal('err', 'Not success fully', 'err');
         };
     };
     // start Model function
