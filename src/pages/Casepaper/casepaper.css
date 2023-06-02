@@ -134,3 +134,17 @@ hr:not([size]) {
     background-color: #005ca1;
     border-color: #005ca1;
 }
+:where(.css-dev-only-do-not-override-1vtf12y).ant-radio-wrapper {
+  font-family: 'Poppins' !important;
+}
+:where(.css-dev-only-do-not-override-1vtf12y)[class^="ant-col"], :where(.css-dev-only-do-not-override-1vtf12y)[class*=" ant-col"] {
+  font-family: Poppins;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.ant-table-thead{
+  font-family: 'Poppins' !important;
+}
+.ant-table-tbody{
+  font-family: 'Poppins' !important;
+}

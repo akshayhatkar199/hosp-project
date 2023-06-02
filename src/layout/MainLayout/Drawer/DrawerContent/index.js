@@ -153,7 +153,9 @@ const DrawerContent = () => {
                 onOpenChange={onOpenChange}
                 onClick={menuclick}
                 style={{
-                    width: 256
+                    width: 256,
+                    fontFamily: 'Poppins',
+                    fontSize: '15px'
                 }}
                 items={items}
             />

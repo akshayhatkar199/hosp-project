@@ -16,3 +16,7 @@ export const MemberregiExcellsheetApi = async (payloadData) => {
     let res = await axiosPrivate.post('/member_regis/MemberregiExcellsheetlist', payloadData);
     return res.data;
 };
+export const registerpatientCountTotalByApi = async (payloadData) => {
+    let res = await axiosPrivate.get('/member_regis/count', payloadData);
+    return res.data;
+};

@@ -11,13 +11,13 @@ function RequireAuth({ children }) {
     const [loading, setLoading] = useState(true);
 
     const detectKeyDown = (e) => {
-        console.log(e);
+        // console.log(e);
         // console.log(e.key);
         if (e.key === 'F1') {
             e.preventDefault();
             // alert('F1 press');
             navigate('/Casepaper');
-            console.log('clicked key', e.key);
+            // console.log('clicked key', e.key);
         }
     };
     useEffect(() => {

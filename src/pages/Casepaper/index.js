@@ -396,7 +396,10 @@ const Casepaper = () => {
     return (
         <>
             <Typography variant="h5" className="mx-2">
-                <small className="text-black-50">Home</small> {'/'} <b> File Case Paper Detail </b>
+                <small className="text-black-50" style={{ fontFamily: 'Poppins' }}>
+                    Home
+                </small>
+                {'/'} <b> File Case Paper Detail </b>
             </Typography>
             <br></br>
             <Card className="driver-create-card ">
@@ -634,7 +637,6 @@ const Casepaper = () => {
                                                 {/* <span className="m-2"> Sex</span> */}
                                                 <Form.Item
                                                     name="SEX"
-                                                    className=""
                                                     // id="outlined-basic"
                                                     // variant="outlined"
                                                     // type="number"
@@ -645,7 +647,7 @@ const Casepaper = () => {
                                                     //     }
                                                     // ]}
                                                 >
-                                                    <Radio.Group>
+                                                    <Radio.Group className="textfont">
                                                         <Radio value={1}>Male</Radio>
                                                         <Radio value={2}>Female</Radio>
                                                     </Radio.Group>

@@ -75,7 +75,7 @@ const ProfileTab = ({ handleLogout }) => {
                 <ListItemIcon>
                     <LogoutOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Logout" />
+                <ListItemText primary="Logout" style={{ fontFamily: 'Poppins' }} />
             </ListItemButton>
             {/* </Link> */}
         </List>

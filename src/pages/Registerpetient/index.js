@@ -95,7 +95,7 @@ const Registerpetient = () => {
                                 </div>
                                 <div className="row printsize">
                                     {/* <span className="text-center"> Case Paper</span> */}
-                                    <table className="table-responsive table table-bordered">
+                                    <table className="table-responsive table table-bordered" style={{ fontFamily: 'Poppins' }}>
                                         <thead>
                                             <tr>
                                                 <th>id</th>

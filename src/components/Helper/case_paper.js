@@ -28,3 +28,7 @@ export const casepaperExcellsheetByApi = async (payloadData) => {
     let res = await axiosPrivate.post('/case_papers/CasepaperExcellsheetlist', payloadData);
     return res.data;
 };
+export const casepaperCountTotalByApi = async (payloadData) => {
+    let res = await axiosPrivate.get('/case_papers/count', payloadData);
+    return res.data;
+};

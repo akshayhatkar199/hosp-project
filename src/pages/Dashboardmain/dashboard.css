@@ -1,0 +1,119 @@
+.main{
+    padding-top: 0px;
+    max-width: 900px;
+    margin: auto;
+}
+.bagimg{
+    background-image: url('../../image/doctors.png');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+    background-blend-mode: inherit;
+    background-color: #6d6161;
+    height: 100vh;
+}
+.topArea {
+    background: linear-gradient(240deg, #005ca1, #d2b6ff73);
+    /* background: linear-gradient(240deg, #005ca0, #005ca0); */
+    height: 229px;
+    display: flex;
+    padding: 10px 6px;
+    margin-top: -23px;
+}
+.fonclas{
+    font-weight: 600;
+}
+.cashflowtext{
+    text-align: center;
+    font-weight: 800;
+    color: green;
+    padding: 10px;
+    font-family: 'Inter';
+}
+.col-11.for_over {
+    padding: 0;
+    background: #fff;
+    /* z-index: 20; */
+    transform: translate(0px, -124px);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding-bottom: 12px;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+}
+.data_rec {
+    font-family: 'Poppins';
+    font-size: 16px;
+    color: red;
+}
+.wrapFlex {
+    display: flex;
+    text-align: center;
+}
+.cash_wrap {
+    padding: 15px;
+    border-bottom: 1px solid #c2b9b9;
+}
+.row.gapBothSides {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    transform: translate(0px, -74px);
+}
+.for_menus {
+    background: #fff;
+    padding: 0;
+    margin: 12px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+.menus_icon {
+    color: var(--common)!important;
+    font-size: 15px!important;
+    font-family: 'Poppins', sans-serif!important;
+    font-weight: 600;
+    text-decoration: none;
+}
+a {
+    color: #161718;
+    text-decoration: underline;
+    text-decoration: none;
+}
+.countfont{
+    font-family: 'Poppins';
+    font-size: 22px;
+}
+.bgcount{
+    background-color: #e5dfca!important;
+}
+
+
+ /* < 576 px */
+ /* @media only screen and (max-width: 576px) {
+    .bagimg {
+        background-position: 50% 0;
+        background-size: 100% 100%;
+    }
+  } */
+  
+  /* < 425px px */
+  /* @media only screen and (max-width: 425px) {
+    .bagimg {
+        background-position: 50% 0;
+        background-size: 100% 100%;
+    }
+  } */
+  /* < 768 px */
+  /* @media only screen and (max-width: 768px) {
+    .bagimg {
+        background-position: 50% 0;
+        background-size: 100% 100%;
+    }
+  } */
+  

@@ -24,7 +24,9 @@ const Search = () => (
                 placeholder="Ctrl + K"
             />
         </FormControl> */}
-        <h6 className="text-center">Welcome</h6>
+        <h6 className="text-center" style={{ fontFamily: 'Poppins' }}>
+            Welcome To Saiclinic
+        </h6>
     </Box>
 );
 
