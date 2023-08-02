@@ -1,46 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import './dashboard.css';
 import Grid from '@mui/material/Unstable_Grid2';
-import Ambulanceimg from '../../image/Ambulan-car.jpg';
+import Ambulanceimg from '../../image/Indian_National_Congress_hand_logo.png';
 import { Link } from 'react-router-dom';
-import { casepaperCountTotalByApi } from 'components/Helper/case_paper';
-import { registerpatientCountTotalByApi } from 'components/Helper/member_rgi';
+// import { casepaperCountTotalByApi } from 'components/Helper/details';
+// import { registerpatientCountTotalByApi } from 'components/Helper/member_rgi';
+import helpimag from '../../image/dashboard-help.jfif';
 
 const Dashboardmain = () => {
     const [casepapertotalcounting, setCasepapertotalcounting] = useState();
     const [registertotalcounting, setRegistertotalcounting] = useState();
-    useEffect(() => {
-        getcasepaertotalcountbyid();
-        gettotalRegistercountbyid();
-    }, []);
-    const getcasepaertotalcountbyid = () => {
-        casepaperCountTotalByApi()
-            .then(
-                async (res) => {
-                    // console.log(' rescountcase', res);
-                    setCasepapertotalcounting(res.count);
-                    // console.log('setCasepapertotalcounting', setCasepapertotalcounting);
-                },
-                (err) => {
-                    console.log('err', err);
-                }
-            )
-            .catch();
-    };
-    const gettotalRegistercountbyid = () => {
-        registerpatientCountTotalByApi()
-            .then(
-                async (res) => {
-                    // console.log(' rescountcase', res);
-                    setRegistertotalcounting(res.count);
-                    // console.log('setRegistertotalcounting', setRegistertotalcounting);
-                },
-                (err) => {
-                    console.log('err', err);
-                }
-            )
-            .catch();
-    };
+    // useEffect(() => {
+    //     getcasepaertotalcountbyid();
+    //     gettotalRegistercountbyid();
+    // }, []);
+    // const getcasepaertotalcountbyid = () => {
+    //     casepaperCountTotalByApi()
+    //         .then(
+    //             async (res) => {
+    //                 // console.log(' rescountcase', res);
+    //                 setCasepapertotalcounting(res.count);
+    //                 // console.log('setCasepapertotalcounting', setCasepapertotalcounting);
+    //             },
+    //             (err) => {
+    //                 console.log('err', err);
+    //             }
+    //         )
+    //         .catch();
+    // };
+    // const gettotalRegistercountbyid = () => {
+    //     registerpatientCountTotalByApi()
+    //         .then(
+    //             async (res) => {
+    //                 // console.log(' rescountcase', res);
+    //                 setRegistertotalcounting(res.count);
+    //                 // console.log('setRegistertotalcounting', setRegistertotalcounting);
+    //             },
+    //             (err) => {
+    //                 console.log('err', err);
+    //             }
+    //         )
+    //         .catch();
+    // };
     return (
         <>
             <div className="bagimg">
@@ -56,7 +57,7 @@ const Dashboardmain = () => {
                                                     // src="https://speedx.mahavitran.net/assets/img/icons/transport.png"
                                                     src={Ambulanceimg}
                                                     alt="dashboar"
-                                                    style={{ width: '169px' }}
+                                                    style={{ width: '87px' }}
                                                     // style={{ height='100', width='100'
                                                     // }}
                                                 />
@@ -65,12 +66,12 @@ const Dashboardmain = () => {
                                                     style={{
                                                         textTransform: 'uppercase',
                                                         color: '#fff',
-                                                        fontWeight: 'bold',
-                                                        fontSize: '23px',
-                                                        fontFamily: 'inter'
+                                                        fontWeight: '600',
+                                                        fontSize: '22px',
+                                                        fontFamily: 'emoji'
                                                     }}
                                                 >
-                                                    Sai Clinic
+                                                    Satyajeet Tambe
                                                 </span>
                                             </div>
                                         </div>
@@ -88,17 +89,17 @@ const Dashboardmain = () => {
                                     <div className="cash_wrap">
                                         <div className="total_cash" style={{ display: 'flex' }}></div>
                                     </div>
-                                    <h5 className="cashflowtext">Patients</h5>
+                                    <h5 className="cashflowtext">Satyajeet Tambe</h5>
                                     <div className="wrapFlex">
                                         <Grid item xs={12} sm={12} lg={4} xl={4} md={4} className="records_data">
-                                            <div className="data_rec fonclas">Casepaper</div>
+                                            <div className="data_rec fonclas">Members</div>
                                             <div className="rounded bgcount">
                                                 <span className="countfont">{casepapertotalcounting}</span>
                                             </div>
                                         </Grid>
 
                                         <Grid item xs={12} sm={12} lg={4} xl={4} md={4} className=" records_data">
-                                            <div className="data_rec fonclas">Register</div>
+                                            <div className="data_rec fonclas">Party Members</div>
                                             <div className="rounded bgcount">
                                                 <span className="countfont">{registertotalcounting}</span>
                                             </div>
@@ -120,7 +121,7 @@ const Dashboardmain = () => {
                                         style={{ justifyContent: 'center', maxHeight: '342px' }}
                                     >
                                         <Grid item xs={12} sm={4} md={3} lg={3} className="for_menus">
-                                            <Link to="/Casepaper">
+                                            <Link to="/patient">
                                                 <div className="menus_icon">
                                                     <img
                                                         src="https://speedx.mahavitran.net/assets/img/icons/user.png"
@@ -147,12 +148,12 @@ const Dashboardmain = () => {
                                             <Link to="/Casepaper">
                                                 <div className="menus_icon">
                                                     <img
-                                                        src="https://speedx.mahavitran.net/assets/img/icons/booking.jpg"
+                                                        src="https://speedx.mahavitran.net/assets/img/icons/loadlist.png"
                                                         alt="dash"
                                                         width="40"
                                                     />
                                                 </div>
-                                                <div className="menus_icon">New Add</div>
+                                                <div className="menus_icon">Casepaper Add</div>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={12} sm={4} md={3} lg={3} className="for_menus">
@@ -169,22 +170,18 @@ const Dashboardmain = () => {
                                         </Grid>
                                         <Grid item xs={12} sm={4} md={3} lg={3} className="for_menus">
                                             {' '}
-                                            <Link to="#">
+                                            <Link to="/Help">
                                                 <div className="menus_icon">
-                                                    <img
-                                                        src="https://speedx.mahavitran.net/assets/img/icons/loading1.png"
-                                                        alt="dash"
-                                                        width="40"
-                                                    />
+                                                    <img src={helpimag} alt="dash" width="40" />
                                                 </div>
-                                                <div className="menus_icon">Loading</div>
+                                                <div className="menus_icon">Help</div>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={12} sm={4} md={3} lg={3} className="for_menus">
                                             <Link to="/casepaperList">
                                                 <div className="menus_icon">
                                                     <img
-                                                        src="https://speedx.mahavitran.net/assets/img/icons/loadlist.png"
+                                                        src="https://speedx.mahavitran.net/assets/img/icons/loading1.png"
                                                         alt="dashb"
                                                         width="40"
                                                     />

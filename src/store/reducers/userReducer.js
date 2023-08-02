@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import jwt_decode from 'jwt-decode';
-
+import API from '../../components/strings';
 //check user password and username
 // this the Action of  checkLogin
 export const checkLogin = createAsyncThunk('login/checkLogin', async (payload, thunkApi) => {
@@ -12,7 +12,11 @@ export const checkLogin = createAsyncThunk('login/checkLogin', async (payload, t
     // console.log('id', id);
     // this api for get data of user by user id
     try {
-        await axios.get(`http://localhost:3000/api/Users/${payload.userId}?access_token=${payload.token}`).then((res) => {
+        // await axios.get(`http://localhost:3000/api/Users/${payload.userId}?access_token=${payload.token}`).then((res) => {
+        //     console.log('resredux--', res);
+        //     userInfoData.info = res.data;
+        // });
+        await axios.get(`${API.API_ROUTE}/Users/${payload.userId}?access_token=${payload.token}`).then((res) => {
             console.log('resredux--', res);
             userInfoData.info = res.data;
         });

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
-import Imagelogo from '../../../../../image/logo_hospital.png';
+import Imagelogo from '../../../../../image/Indian_National_Congress_hand_logo.png';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import {

@@ -24,8 +24,8 @@ const Search = () => (
                 placeholder="Ctrl + K"
             />
         </FormControl> */}
-        <h6 className="text-center" style={{ fontFamily: 'Poppins' }}>
-            Welcome To Saiclinic
+        <h6 className="text-center" style={{ fontFamily: 'Poppins', color: '#f3711c' }}>
+            Satyajeet <span style={{ color: '#06833d' }}>Tambe</span>
         </h6>
     </Box>
 );

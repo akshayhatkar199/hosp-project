@@ -46,19 +46,25 @@ const items = [
     //     'group'
     // )
     getItem('Dashboard', '1', <DashboardOutlined />),
-    getItem('Case Paper', 'sub1', <AppstoreOutlined />, [
-        getItem('Create Case Paper ', '2', <ProfileOutlined />),
-        getItem('Case Paper List', '3', <ProfileOutlined />)
+    getItem('Website Manage', 'sub2', <AppstoreOutlined />, [
+        getItem('Banner create', '4', <UserOutlined />),
+        getItem(' Banner Modify', '5', <UserOutlined />),
+        getItem('Mainbatmaya ', '6', <ProfileOutlined />),
+        getItem('MainbatmayaTable ', '7', <ProfileOutlined />)
     ]),
-    getItem('Pationt', 'sub2', <AppstoreOutlined />, [
-        // getItem('Pationt', '4', <UserOutlined />),
-        getItem('Pationt Details', '5', <UserOutlined />)
-    ]),
-    getItem('Preserption', '6', <WalletOutlined />),
-    getItem('Master', '7', <AppstoreOutlined />),
-    getItem('Report', '8', <QuestionCircleOutlined />),
-    getItem('Help', '9', <UnorderedListOutlined />),
-    getItem('Log Out', '10', <LogoutOutlined />)
+    getItem('Brand Details', 'sub1', <AppstoreOutlined />, [
+        getItem('Brand Table ', '2', <ProfileOutlined />),
+        getItem('Brand From', '3', <ProfileOutlined />)
+    ])
+    // getItem('Brand Details', 'sub1', <AppstoreOutlined />, [
+    //     getItem('Mainbatmaya ', '2', <ProfileOutlined />),
+    //     getItem('Brand From', '3', <ProfileOutlined />)
+    // ])
+    // getItem('Preserption', '6', <WalletOutlined />),
+    // getItem('Master', '7', <AppstoreOutlined />),
+    // getItem('Report', '8', <QuestionCircleOutlined />),
+    // getItem('Help', '9', <UnorderedListOutlined />),
+    // getItem('Log Out', '10', <LogoutOutlined />)
 ];
 // submenu keys of first level
 const rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
@@ -79,37 +85,37 @@ const DrawerContent = () => {
         // console.log(`"item" ${item}`);
         console.log(item);
         if (item.key == 1) {
-            navigate(`/Dashboardmain`);
+            navigate(`/`);
             console.log(item.key);
         }
         if (item.key == 2) {
-            navigate(`/Casepaper`);
+            navigate(`/BrandTable`);
             console.log(item.key);
         }
         if (item.key == 3) {
-            navigate(`/casepaperList`);
+            navigate(`/Brandfrom`);
             console.log(item.key);
         }
-        // if (item.key == 4) {
-        //     navigate(`/patient`);
-        //     console.log(item.key);
-        // }
+        if (item.key == 4) {
+            navigate(`/Banner`);
+            console.log(item.key);
+        }
         if (item.key == 5) {
-            navigate(`/PationtDetails`);
+            navigate(`/Modify`);
             console.log(item.key);
         }
         if (item.key == 6) {
-            navigate(`/Preserption`);
+            navigate(`/Mainbatmaya`);
             console.log(item.key);
         }
         if (item.key == 7) {
-            navigate(`/Master`);
+            navigate(`/MainbatmayaTable`);
             console.log(item.key);
         }
-        if (item.key == 8) {
-            navigate(`/Report`);
-            console.log(item.key);
-        }
+        // if (item.key == 8) {
+        //     navigate(`/Report`);
+        //     console.log(item.key);
+        // }
         if (item.key == 9) {
             navigate(`/Help`);
             console.log(item.key);

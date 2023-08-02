@@ -7,7 +7,7 @@ const Footer = () => {
                 <div class="d-flex py-3 w-100" style={{ justifyContent: 'center', backgroundColor: 'black', padding: '10px' }}>
                     <div class="text-white">
                         Designed &amp; Developed By{' '}
-                        <a href="https://comtranse.in/" style={{ color: 'blue' }}>
+                        <a href="https://comtranse.in/" style={{ color: 'blue' }} target="_blank">
                             Comtranse Technology Pvt.Ltd.
                         </a>
                     </div>

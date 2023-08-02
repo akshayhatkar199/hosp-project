@@ -1,0 +1,613 @@
+// material-ui
+import { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import Card from '@mui/material/Card';
+import { number } from 'prop-types';
+import Grid from '@mui/material/Unstable_Grid2';
+import CreatableSelect from 'react-select/creatable';
+import DataTable, { FilterComponent } from 'react-data-table-component';
+import { DatePicker, Radio } from 'antd';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Typography } from '@mui/material';
+import { Space, Table, Tag, Select } from 'antd';
+import Box from '@mui/material/Box';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faCircleCheck, faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { Upload, Button, Icon, Input, Form, Modal, Checkbox } from 'antd';
+import { TextareaAutosize } from '@mui/base';
+import { petientdropdwonsearchbyApi } from 'components/Helper/petients';
+import { UploadOutlined, QuestionOutlined } from '@ant-design/icons';
+// import Footer from '../components/Footer';
+import './casepaper.css';
+let timeout;
+let currentValue;
+const { RangePicker } = DatePicker;
+
+const Casepaper = () => {
+    const [placement, SetPlacement] = useState('topRight');
+    const [pationtnamedata, setpationtpationtnamedata] = useState([]);
+    const [pationtnamevalue, setPationtnameValue] = useState();
+    const [prescriptionValue, setprescriptionValue] = useState();
+    const [isModalOpenpatientname, setIsModalOpenpatientname] = useState();
+    const [prescriptiondata, setprescriptiondata] = useState([]);
+    const fileList = [];
+    const props = {
+        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        listType: 'picture',
+        defaultFileList: [...fileList]
+    };
+    const { TextArea } = Input;
+
+    const options = [
+        { value: 'Adhar Card', label: 'Adhar Card' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ];
+    const data = [
+        {
+            op: ''
+        }
+    ];
+    const dataSource = [
+        {
+            key: '1',
+            name: 'Mike',
+            age: 32,
+            address: '10 Downing Street',
+            mobileNo1: 9856224567,
+            mobileNo2: 9856427564,
+            email: 'akki99@gmail.com'
+        }
+    ];
+
+    const columns = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name'
+        },
+        {
+            title: 'Age',
+            dataIndex: 'age',
+            key: 'age'
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address'
+        },
+        {
+            title: 'Mobile No1',
+            dataIndex: 'mobileNo1',
+            key: 'mobileNo1'
+        },
+        {
+            title: 'Mobile No2',
+            dataIndex: 'mobileNo2',
+            key: 'mobileNo2'
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email'
+        }
+    ];
+
+    const paginationComponentOptions = {
+        rowsPerPageText: '',
+        noRowsPerPage: true
+    };
+    const onFinish = (values) => {
+        console.log('Success:', values);
+    };
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+    const placementChange = (e) => {
+        SetPlacement(e.target.value);
+    };
+    // <=============================================================================================================>
+    // Start Model country Add
+    const showModalpatientname = () => {
+        setIsModalOpenpatientname(true);
+    };
+
+    const handleOkpatientname = () => {
+        setIsModalOpenpatientname(false);
+    };
+
+    const handleCancelpatientname = () => {
+        setIsModalOpenpatientname(false);
+    };
+    // End Model country Add
+    // <=============================================================================================================>
+    // <===================================================================================>
+    const handlepationtnameSearch = (newValue) => {
+        if (newValue) {
+            pationtnamefetch(newValue, setpationtpationtnamedata);
+        } else {
+            setpationtpationtnamedata([]);
+        }
+    };
+    const handlepationtnameChange = (newValue) => {
+        setPationtnameValue(newValue);
+    };
+    const pationtnamefetch = (pationtnamevalue, callback) => {
+        if (timeout) {
+            clearTimeout(timeout);
+            timeout = null;
+        }
+        currentValue = pationtnamevalue;
+        const fakepationtname = () => {
+            const payloadData = {
+                search: currentValue
+            };
+            petientdropdwonsearchbyApi(payloadData).then((res) => {
+                console.log('res--', res);
+                setpationtpationtnamedata(res.data);
+                // if (currentValue === pationtnamevalue) {
+                //     const Cdata = res.data.map((item) => ({
+                //         value: item.id,
+                //         text: item.patientName
+                //     }));
+                //     callback(Cdata);
+                // }
+            });
+        };
+        timeout = setTimeout(fakepationtname, 300);
+    };
+    // console.log('data', pationtnamedata);
+    // <==================================================================================>
+    const onpationtnameSubmitModel = () => {};
+
+    // <=============================================================================>
+    const handlePrescriptionSearch = (newValue) => {
+        if (newValue) {
+            prescriptionfetch(newValue, setprescriptiondata);
+        } else {
+            setprescriptiondata([]);
+        }
+    };
+    const handlePrescriptionChange = (newValue) => {
+        setprescriptionValue(newValue);
+    };
+    const prescriptionfetch = (prescriptionvalue, callback) => {
+        if (timeout) {
+            clearTimeout(timeout);
+            timeout = null;
+        }
+        currentValue = prescriptionvalue;
+        const fakesetprescriptiondata = () => {
+            const payloadData = {
+                search: currentValue
+            };
+            petientdropdwonsearchbyApi(payloadData).then((res) => {
+                console.log('res--', res);
+                setprescriptiondata(res.data);
+                // if (currentValue === pationtnamevalue) {
+                //     const Cdata = res.data.map((item) => ({
+                //         value: item.id,
+                //         text: item.patientName
+                //     }));
+                //     callback(Cdata);
+                // }
+            });
+        };
+        timeout = setTimeout(fakesetprescriptiondata, 300);
+    };
+    // <======================================================================================>
+    //checkbox
+    const onChange = (e) => {
+        console.log(`checked = ${e.target.checked}`);
+    };
+    return (
+        <>
+            <Typography variant="h5" className="mx-2">
+                <small className="text-black-50">Home</small> {'/'} <b>Casepaper</b>
+            </Typography>
+            <br></br>
+            <Card className="driver-create-card ">
+                <div className="title-main">
+                    <h5>
+                        {/* <FontAwesomeIcon icon={faCaretLeft} /> */}
+                        <span className=" ribbon">Casepaper </span>
+                        {/* <FontAwesomeIcon icon={faCaretRight} /> */}
+                    </h5>
+                </div>
+                <hr className="MuiDivider-root MuiDivider-fullWidth css-1wnin34-MuiDivider-root"></hr>
+                <Form
+                    name="basic"
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
+                >
+                    <Grid item xs={12} container spacing={1}>
+                        <Grid item lg={4} sm={6} xs={12} md={6}>
+                            <Form.Item
+                                name="patientName"
+                                id="outlined-basic"
+                                label="Patient Code/Name"
+                                className="w-100"
+                                variant="outlined"
+                                type="text"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please Enter your Patient Name!'
+                                    }
+                                ]}
+                                hasFeedback
+                            >
+                                <Select
+                                    showSearch
+                                    value={pationtnamevalue}
+                                    placeholder={'search Name'}
+                                    style={{
+                                        width: 200
+                                    }}
+                                    defaultActiveFirstOption={false}
+                                    showArrow={true}
+                                    filterOption={false}
+                                    onSearch={handlepationtnameSearch}
+                                    onChange={handlepationtnameChange}
+                                    notFoundContent={null}
+                                    options={(pationtnamedata || []).map((d) => ({
+                                        value: d.id,
+                                        label: d.patientName
+                                    }))}
+                                />
+                                <Button type="primary" onClick={showModalpatientname} className="btn-sm">
+                                    +
+                                </Button>
+                            </Form.Item>
+                        </Grid>
+                        <Modal
+                            title="Basic Modal"
+                            open={isModalOpenpatientname}
+                            onOk={handleOkpatientname}
+                            onCancel={handleCancelpatientname}
+                            footer={null}
+                        >
+                            <Form name="basic" onFinish={onpationtnameSubmitModel} autoComplete="off">
+                                <Form.Item
+                                    name="patientName"
+                                    id="outlined-basic"
+                                    variant="outlined"
+                                    // onChange={(e) => {
+                                    //     setCountrynamdataModel(e.target.value);
+                                    // }}
+                                    type="text"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please Enter your Patient Name!'
+                                        }
+                                    ]}
+                                    hasFeedback
+                                >
+                                    <TextField
+                                        // id="outlined-basic"
+                                        allowClear
+                                        fullWidth
+                                        label="Patient Name"
+                                        type="text"
+                                    />
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button
+                                        type="primary"
+                                        htmlType="submit"
+                                        className="btn btn-primary m-2 button-hov-add-to-list btn-sm rounded-pill"
+                                        // loading={loading}
+                                        // disabled={!email || email === ''}
+                                    >
+                                        Submit
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </Modal>
+                        <Grid item lg={4} sm={6} xs={12} md={6}>
+                            <Form.Item
+                                name=" Date"
+                                id="outlined-basic"
+                                variant="outlined"
+                                className="w-100"
+                                label="Date"
+                                type="Date"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please Enter your start Date!'
+                                    }
+                                ]}
+                            >
+                                {/* <span>Start Date</span> */}
+                                {/* <TextField id="outlined-basic" type="Date" /> */}
+                                <DatePicker fullWidth placement={placement} />
+                            </Form.Item>
+                        </Grid>
+                        <Grid item lg={4} sm={6} xs={12} md={6}>
+                            <Form.Item
+                                name="prescription"
+                                id="outlined-basic"
+                                label="Prescription"
+                                variant="outlined"
+                                type="number"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please Enter your Prescription!'
+                                    }
+                                ]}
+                            >
+                                <Select
+                                    showSearch
+                                    value={prescriptionValue}
+                                    placeholder={'search Name'}
+                                    style={{
+                                        width: 200
+                                    }}
+                                    defaultActiveFirstOption={false}
+                                    showArrow={true}
+                                    filterOption={false}
+                                    onSearch={handlePrescriptionSearch}
+                                    onChange={handlePrescriptionChange}
+                                    notFoundContent={null}
+                                    options={(prescriptiondata || []).map((d) => ({
+                                        value: d.id,
+                                        label: d.patientName
+                                    }))}
+                                />
+                                {/* <Button type="primary" onClick={showModalPrescription} className="btn-sm">
+                                    +
+                                </Button> */}
+                            </Form.Item>
+                        </Grid>
+                        <Grid item lg={6} sm={6} xs={12} md={6}>
+                            <Form.Item
+                                className="text-center"
+                                // name="Licence No"
+                                // id="outlined-basic"
+                                // variant="outlined"
+                                // type="number"
+                                // rules={[
+                                //     {
+                                //         required: true,
+                                //         message: 'Please Enter your Whatsapp Number!'
+                                //     }
+                                // ]}
+                            >
+                                <Checkbox onChange={onChange}>सकाळ</Checkbox>
+                                <Checkbox onChange={onChange}> संध्याकाळ</Checkbox>
+                                <Checkbox onChange={onChange}>दुपार</Checkbox>
+                            </Form.Item>
+                        </Grid>
+
+                        <Grid item lg={6} sm={6} xs={12} md={6}>
+                            {/* <TextField id="outlined-basic" fullWidth label="Address/ पत्ता" variant="outlined" /> */}
+                            <div className="table-responsive">
+                                <Table
+                                    columns={columns}
+                                    dataSource={dataSource}
+                                    bordered
+                                    size="small"
+                                    // loading={loading}
+                                    // pagination={tableParams.pagination}
+                                    // onChange={handleTableChange}
+                                />
+                                {/* <Table dataSource={dataSource} columns={columns} size="small" />; */}
+                            </div>
+                        </Grid>
+                        <Grid item lg={6} sm={6} xs={12} md={6}>
+                            <Form.Item
+                                fullWidth
+                                name="Description"
+                                label="Description"
+                                variant="outlined"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your Description!'
+                                    }
+                                ]}
+                            >
+                                <TextArea rows={2} fullWidth />
+                            </Form.Item>
+                        </Grid>
+
+                        <Grid item lg={6} sm={6} xs={12} md={6}>
+                            {/* <TextField id="outlined-basic" fullWidth label="Photo" variant="outlined" /> */}
+                            {/* <Upload {...props}>
+                                <Button className="image-upload">
+                                    <UploadOutlined />
+                                    Upload Choose File
+                                </Button>
+                            </Upload> */}
+                        </Grid>
+                        {/* <Grid item lg={3} sm={6} xs={12}></Grid>
+                        <Grid item lg={2} sm={6} xs={12}></Grid> */}
+                        <br></br>
+                        <div className="DriverAddbox mt-4">
+                            <h5 className="docdetails">Document Details</h5>
+                            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                                <Grid item lg={3} sm={6} xs={12}>
+                                    {/* <Select type="text" fullWidth label="Document Type" variant="outlined" /> */}
+                                    {/* <Form.Item
+                                        name="Document"
+                                        id="outlined-basic"
+                                        variant="outlined"
+                                        type="text"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please Enter Your Document!'
+                                            }
+                                        ]}
+                                    >
+                                        <span>Document Type*</span>
+                                        <CreatableSelect
+                                            required
+                                            options={options}
+                                            // className="text-start"
+                                            placeholder="--Select Document--"
+                                            // value={itemorderList?.find((obj) => obj.value === form.item)}
+                                            // onChange={(event) => handleFormChange(event, index, 'item')}
+                                            // isSearchable={true}
+                                        />
+                                    </Form.Item> */}
+                                    <Form.Item
+                                        name="Document"
+                                        id="outlined-basic"
+                                        variant="outlined"
+                                        type="text"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please Enter Your Document!'
+                                            }
+                                        ]}
+                                    >
+                                        <span>Document Type*</span>
+                                        <Select
+                                            showSearch
+                                            placeholder="Select"
+                                            optionFilterProp="children"
+                                            filterOption={(input, option) => (option?.label ?? '').includes(input)}
+                                            filterSort={(optionA, optionB) =>
+                                                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                                            }
+                                            options={[
+                                                {
+                                                    value: '1',
+                                                    label: 'Not Identified'
+                                                },
+                                                {
+                                                    value: '2',
+                                                    label: 'Closed'
+                                                },
+                                                {
+                                                    value: '3',
+                                                    label: 'Communicated'
+                                                }
+                                            ]}
+                                        />
+                                    </Form.Item>
+                                </Grid>
+                                <Grid item lg={3} sm={6} xs={12}>
+                                    <Form.Item
+                                        name="Document Number"
+                                        id="outlined-basic"
+                                        variant="outlined"
+                                        type="number"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please Enter Your Document Number!'
+                                            }
+                                        ]}
+                                    >
+                                        <span>*</span>
+                                        <TextField fullWidth label="Document Number" type="number" />
+                                    </Form.Item>
+                                </Grid>
+                                <Grid item lg={2} sm={6} xs={12}>
+                                    <Form.Item
+                                        name="start Date"
+                                        id="outlined-basic"
+                                        variant="outlined"
+                                        type="Date"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please Enter your start Date!'
+                                            }
+                                        ]}
+                                    >
+                                        <span>Start Date</span>
+                                        {/* <TextField id="outlined-basic" type="Date" /> */}
+                                        <DatePicker fullWidth placement={placement} />
+                                    </Form.Item>
+                                </Grid>
+                                <Grid item lg={2} sm={6} xs={12}>
+                                    <Form.Item
+                                        name="Expiry Date"
+                                        id="outlined-basic"
+                                        variant="outlined"
+                                        type="Date"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please Enter your Expiry Date!'
+                                            }
+                                        ]}
+                                    >
+                                        <span>Expiry Date</span>
+                                        {/* <TextField id="outlined-basic" fullWidth variant="outlined" type="Date" /> */}
+                                        <DatePicker fullWidth placement={placement} />
+                                    </Form.Item>
+                                </Grid>
+                                <Grid item lg={2} sm={6} xs={12}></Grid>
+                                <Grid item lg={12} sm={12} xs={12}>
+                                    <button type="button" id="addtolist_btn" className="btn btn-primary  button-hov-add-to-list btn-sm ">
+                                        Add To List
+                                    </button>
+                                </Grid>
+                                <br></br>
+                                <br></br>
+                                {/* <Grid container spacing={2} columnSpacing={{ xs: 1, sm: 12, md: 12 }}> */}
+                                <Grid item lg={12} xs={12} sm={12} md={12}>
+                                    <div className="table-responsive">
+                                        <Table
+                                            columns={columns}
+                                            dataSource={dataSource}
+                                            bordered
+                                            size="small"
+                                            // loading={loading}
+                                            // pagination={tableParams.pagination}
+                                            // onChange={handleTableChange}
+                                        />
+                                        {/* <Table dataSource={dataSource} columns={columns} size="small" />; */}
+                                    </div>
+                                </Grid>
+                                {/* </Grid> */}
+                            </Grid>
+                        </div>
+                        <Grid item lg={12} sm={12} xs={12} className="edit-button">
+                            <Form.Item>
+                                {/* <button
+                                    type="submit"
+                                    htmlType="submit"
+                                    id="addtolist_btn"
+                                    className="btn btn-primary m-2 button-hov-add-to-list btn-sm rounded-pill"
+                                >
+                                    <FontAwesomeIcon icon={faCircleCheck} /> Save
+                                </button> */}
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    className="btn btn-primary m-2 button-hov-add-to-list btn-sm rounded-pill"
+                                >
+                                    Submit
+                                </Button>
+                            </Form.Item>
+                            <Form.Item>
+                                <Link to={'/Drivercreate'}>
+                                    <button
+                                        type="button"
+                                        id="addtolist_btn"
+                                        className="btn btn-primary  button-hov-add-to-list btn-sm rounded-pill mt-2"
+                                    >
+                                        <FontAwesomeIcon icon={faPenToSquare} /> Edit
+                                    </button>
+                                </Link>
+                            </Form.Item>
+                        </Grid>
+                    </Grid>
+                </Form>
+            </Card>
+        </>
+    );
+};
+
+export default Casepaper;

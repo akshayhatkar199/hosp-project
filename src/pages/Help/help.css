@@ -1,0 +1,20 @@
+MuiCard-root{
+    margin-bottom: 45px;
+}
+.driver-create-card{
+    padding: 24px;
+    margin-bottom: 44px;
+}
+.fontstyle{
+    font-family: Poppins;
+}
+.helpdiv{
+    border-left: 4px dotted blue;
+    border-top: 4px dotted red;
+    border-right: 4px dotted blue;
+    padding: 19px;
+    background-color: #f8f5f5;
+}
+.comtransmain{
+    font-size: x-large;
+}

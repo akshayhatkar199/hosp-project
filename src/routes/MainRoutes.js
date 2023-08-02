@@ -9,16 +9,16 @@ import RequireAuth from 'components/requireAuth';
 // render - dashboard
 // const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 const Dashboardmain = Loadable(lazy(() => import('pages/Dashboardmain/index')));
-const Casepaper = Loadable(lazy(() => import('pages/Casepaper/index')));
-const PationtDetails = Loadable(lazy(() => import('pages/PationtDetails/index')));
-const Patient = Loadable(lazy(() => import('pages/Patient/index')));
-const Preserption = Loadable(lazy(() => import('pages/Preserption/index')));
-const Master = Loadable(lazy(() => import('pages/Master/index')));
-const Report = Loadable(lazy(() => import('pages/Report/index')));
+const Brandfrom = Loadable(lazy(() => import('pages/Brandfrom/index')));
+const Banner = Loadable(lazy(() => import('pages/Banner/index')));
+const Modify = Loadable(lazy(() => import('pages/Modify/index')));
+const Mainbatmaya = Loadable(lazy(() => import('pages/Mainbatmaya/index')));
+// const Master = Loadable(lazy(() => import('pages/Master/index')));
+// const Report = Loadable(lazy(() => import('pages/Report/index')));
 const Help = Loadable(lazy(() => import('pages/Help/index')));
-const CasepaperList = Loadable(lazy(() => import('pages/CasepaperList/index')));
-const Printtable = Loadable(lazy(() => import('pages/Printtable/index')));
-const Registerpetient = Loadable(lazy(() => import('pages/Registerpetient/index')));
+const Brandtable = Loadable(lazy(() => import('pages/Brandtable/index')));
+const MainbatmayaTable = Loadable(lazy(() => import('pages/MainbatmayaTable/index')));
+// const Registerpetient = Loadable(lazy(() => import('pages/Registerpetient/index')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -34,83 +34,80 @@ const AntIcons = Loadable(lazy(() => import('pages/components-overview/AntIcons'
 const MainRoutes = {
     path: '/',
     element: (
-        <RequireAuth>
-            <MainLayout />
-        </RequireAuth>
+        // <RequireAuth>
+        <MainLayout />
+        // </RequireAuth>
     ),
     children: [
         {
-            path: 'Dashboardmain',
+            path: '/',
             element: (
-                <RequireAuth>
-                    <Dashboardmain />
-                </RequireAuth>
+                // <RequireAuth>
+                <Dashboardmain />
+                // </RequireAuth>
             )
+        },
+        // {
+        //     path: 'Casepaper',
+        //     element: <Casepaper />
+        // },
+        // {
+        //     path: 'Casepaper/:id',
+        //     element: (
+        //         <RequireAuth>
+        //             <Casepaper />
+        //         </RequireAuth>
+        //     )
+        // },
+        {
+            path: 'BrandTable',
+            element: <Brandtable />
         },
         {
-            path: 'Casepaper',
-            element: (
-                <RequireAuth>
-                    <Casepaper />
-                </RequireAuth>
-            )
+            path: 'Brandfrom',
+            element: <Brandfrom />
         },
         {
-            path: 'Casepaper/:id',
-            element: (
-                <RequireAuth>
-                    <Casepaper />
-                </RequireAuth>
-            )
+            path: 'Banner',
+            element: <Banner />
         },
         {
-            path: 'casepaperList',
-            element: (
-                <RequireAuth>
-                    <CasepaperList />
-                </RequireAuth>
-            )
+            path: 'Banner/:id',
+            element: <Banner />
         },
         {
-            path: 'patient',
-            element: (
-                <RequireAuth>
-                    <Patient />
-                </RequireAuth>
-            )
+            path: 'Modify',
+            element: <Modify />
         },
         {
-            path: 'PationtDetails',
-            element: (
-                <RequireAuth>
-                    <PationtDetails />
-                </RequireAuth>
-            )
+            path: 'Mainbatmaya',
+            element: <Mainbatmaya />
         },
         {
-            path: 'preserption',
-            element: (
-                <RequireAuth>
-                    <Preserption />
-                </RequireAuth>
-            )
+            path: 'Mainbatmaya/:id',
+            element: <Mainbatmaya />
         },
         {
-            path: 'master',
-            element: (
-                <RequireAuth>
-                    <Master />
-                </RequireAuth>
-            )
+            path: 'MainbatmayaTable',
+            element: <MainbatmayaTable />
         },
-        {
-            path: 'report',
-            element: (
-                <RequireAuth>
-                    <Report />
-                </RequireAuth>
-            )
-        },
+
+        // {
+        //     path: 'master',
+        //     element: (
+        //         <RequireAuth>
+        //             <Master />
+        //         </RequireAuth>
+        //     )
+        // },
+        // {
+        //     path: 'report',
+        //     element: (
+        //         <RequireAuth>
+        //             <Report />
+        //         </RequireAuth>
+        //     )
+        // },
         {
             path: 'help',
             element: (
@@ -119,22 +116,22 @@ const MainRoutes = {
                 </RequireAuth>
             )
         },
-        {
-            path: 'Printtable/:offset',
-            element: (
-                <RequireAuth>
-                    <Printtable />
-                </RequireAuth>
-            )
-        },
-        {
-            path: 'Registerpetient/:offset',
-            element: (
-                <RequireAuth>
-                    <Registerpetient />
-                </RequireAuth>
-            )
-        },
+        // {
+        //     path: 'Printtable/:offset',
+        //     element: (
+        //         <RequireAuth>
+        //             <Printtable />
+        //         </RequireAuth>
+        //     )
+        // },
+        // {
+        //     path: 'Registerpetient/:offset',
+        //     element: (
+        //         <RequireAuth>
+        //             <Registerpetient />
+        //         </RequireAuth>
+        //     )
+        // },
         {
             path: 'icons/ant',
             element: <AntIcons />

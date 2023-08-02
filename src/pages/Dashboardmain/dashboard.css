@@ -4,17 +4,19 @@
     margin: auto;
 }
 .bagimg{
-    background-image: url('../../image/doctors.png');
+    /* background-image: url('../../image/doctors.png'); */
+    /* background-image: url('https://img.theweek.in/content/dam/week/news/images/2022/4/3/Congress-party-flag-hand-.jpg'); */
     background-repeat: no-repeat;
     background-position: 50% 0;
     background-size: cover;
     background-blend-mode: inherit;
-    background-color: #6d6161;
-    height: 100vh;
+    /* background-color: #6d6161; */
+    /* height: 100vh; */
 }
 .topArea {
-    background: linear-gradient(240deg, #005ca1, #d2b6ff73);
-    /* background: linear-gradient(240deg, #005ca0, #005ca0); */
+    /* background: linear-gradient(240deg, #005ca1, #d2b6ff73); */
+    background: linear-gradient(0deg, #06833da3, #f3711c);
+    background: linear-gradient(0deg, #06833dcf, #f3711c);
     height: 229px;
     display: flex;
     padding: 10px 6px;
@@ -24,11 +26,19 @@
     font-weight: 600;
 }
 .cashflowtext{
-    text-align: center;
+    /* text-align: center;
     font-weight: 800;
     color: green;
     padding: 10px;
-    font-family: 'Inter';
+    font-family: 'Inter'; */
+    text-align: center;
+    /* font-weight: 800; */
+    /* color: green; */
+    font-family: emoji;
+    font-size: 22px;
+    font-weight: 600;
+    color: #8e6951;
+    padding: 10px;
 }
 .col-11.for_over {
     padding: 0;
@@ -41,9 +51,17 @@
     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
 }
 .data_rec {
-    font-family: 'Poppins';
+    /* font-family: 'Poppins';
     font-size: 16px;
-    color: red;
+    color: #0a0a0a; */
+    font-family: emoji;
+    font-size: 22px;
+    font-weight: 600;
+    color: #8e6951;
+    /* font-family: anton,sans-serif;
+    font-size: 24px;
+    color: #666;
+    font-weight: 600; */
 }
 .wrapFlex {
     display: flex;
@@ -88,11 +106,29 @@ a {
 .countfont{
     font-family: 'Poppins';
     font-size: 22px;
+    color: white;
+    font-weight: 700;
 }
 .bgcount{
-    background-color: #e5dfca!important;
+    background-color: #f3711c!important;
+    position: relative;
+    text-align: center;
+    margin-left: 64px;
+    margin-right: 64px;
 }
-
+.bgcount::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    right: 13%;
+    width: 12px;
+    height: 12px;
+    background-color: #f3711c;
+    transform: rotate(135deg);
+}
+.for_menus:hover{
+    transform: scale(1.1);
+}
 
  /* < 576 px */
  /* @media only screen and (max-width: 576px) {
@@ -109,11 +145,14 @@ a {
         background-size: 100% 100%;
     }
   } */
-  /* < 768 px */
-  /* @media only screen and (max-width: 768px) {
-    .bagimg {
-        background-position: 50% 0;
-        background-size: 100% 100%;
-    }
-  } */
+  /* < 768 px */ 
+   @media only screen and (max-width: 768px) {
+        .bgcount{
+            background-color: #005ca1!important;
+            position: relative;
+            text-align: center;
+            margin-left: 2px;
+            margin-right: 6px;
+        }
+  }
   

@@ -19,14 +19,14 @@ const LoginRoutes = {
         //     path: 'login',
         //     element: <AuthLogin />
         // },
-        {
-            path: 'register',
-            element: <AuthRegister />
-        },
-        {
-            path: 'mainLogin',
-            element: <MainLogin />
-        }
+        // {
+        //     path: 'register',
+        //     element: <AuthRegister />
+        // },
+        // {
+        //     path: 'mainLogin',
+        //     element: <MainLogin />
+        // }
     ]
 };
 
