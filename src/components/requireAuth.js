@@ -10,19 +10,19 @@ function RequireAuth({ children }) {
     const [isLogin, setIsLogin] = useState(true);
     const [loading, setLoading] = useState(true);
 
-    const detectKeyDown = (e) => {
-        // console.log(e);
-        // console.log(e.key);
-        if (e.key === 'F1') {
-            e.preventDefault();
-            // alert('F1 press');
-            navigate('/Casepaper');
-            // console.log('clicked key', e.key);
-        }
-    };
-    useEffect(() => {
-        document.addEventListener('keydown', detectKeyDown, true);
-    }, []);
+    // const detectKeyDown = (e) => {
+    //     // console.log(e);
+    //     // console.log(e.key);
+    //     if (e.key === 'F1') {
+    //         e.preventDefault();
+    //         // alert('F1 press');
+    //         navigate('/');
+    //         // console.log('clicked key', e.key);
+    //     }
+    // };
+    // useEffect(() => {
+    //     document.addEventListener('keydown', detectKeyDown, true);
+    // }, []);
 
     const checkIsLogin = async () => {
         const token = localStorage.getItem('token');

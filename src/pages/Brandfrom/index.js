@@ -16,7 +16,6 @@ import { faPenToSquare, faCircleCheck, faCaretLeft, faCaretRight, faFloppyDisk, 
 import { Upload, Button, Icon, Form, Modal, Checkbox } from 'antd';
 import { TextareaAutosize } from '@mui/base';
 import swal from 'sweetalert';
-import User from '../../image/undraw_user.png';
 import { UploadOutlined, QuestionOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import dayjs from 'dayjs';

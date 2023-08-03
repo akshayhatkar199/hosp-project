@@ -23,10 +23,10 @@ const LoginRoutes = {
         //     path: 'register',
         //     element: <AuthRegister />
         // },
-        // {
-        //     path: 'mainLogin',
-        //     element: <MainLogin />
-        // }
+        {
+            path: 'mainLogin',
+            element: <MainLogin />
+        }
     ]
 };
 

@@ -48,14 +48,16 @@ const items = [
     getItem('Dashboard', '1', <DashboardOutlined />),
     getItem('Website Manage', 'sub2', <AppstoreOutlined />, [
         getItem('Banner create', '4', <UserOutlined />),
-        getItem(' Banner Modify', '5', <UserOutlined />),
-        getItem('Mainbatmaya ', '6', <ProfileOutlined />),
-        getItem('MainbatmayaTable ', '7', <ProfileOutlined />)
+        getItem(' Banner Modify', '5', <ProfileOutlined />),
+        getItem('Mainbatmaya ', '6', <UserOutlined />),
+        getItem('MainbatmayaTable ', '7', <ProfileOutlined />),
+        getItem('Shanchitre ', '8', <UserOutlined />),
+        getItem('ShanchitryTable ', '9', <ProfileOutlined />)
     ]),
     getItem('Brand Details', 'sub1', <AppstoreOutlined />, [
         getItem('Brand Table ', '2', <ProfileOutlined />),
         getItem('Brand From', '3', <ProfileOutlined />)
-    ])
+    ]),
     // getItem('Brand Details', 'sub1', <AppstoreOutlined />, [
     //     getItem('Mainbatmaya ', '2', <ProfileOutlined />),
     //     getItem('Brand From', '3', <ProfileOutlined />)
@@ -64,7 +66,7 @@ const items = [
     // getItem('Master', '7', <AppstoreOutlined />),
     // getItem('Report', '8', <QuestionCircleOutlined />),
     // getItem('Help', '9', <UnorderedListOutlined />),
-    // getItem('Log Out', '10', <LogoutOutlined />)
+    getItem('Log Out', '10', <LogoutOutlined />)
 ];
 // submenu keys of first level
 const rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
@@ -112,12 +114,12 @@ const DrawerContent = () => {
             navigate(`/MainbatmayaTable`);
             console.log(item.key);
         }
-        // if (item.key == 8) {
-        //     navigate(`/Report`);
-        //     console.log(item.key);
-        // }
+        if (item.key == 8) {
+            navigate(`/Shanchitre`);
+            console.log(item.key);
+        }
         if (item.key == 9) {
-            navigate(`/Help`);
+            navigate(`/ShanchitryTable`);
             console.log(item.key);
         }
         if (item.key == 10) {

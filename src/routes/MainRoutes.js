@@ -13,12 +13,12 @@ const Brandfrom = Loadable(lazy(() => import('pages/Brandfrom/index')));
 const Banner = Loadable(lazy(() => import('pages/Banner/index')));
 const Modify = Loadable(lazy(() => import('pages/Modify/index')));
 const Mainbatmaya = Loadable(lazy(() => import('pages/Mainbatmaya/index')));
-// const Master = Loadable(lazy(() => import('pages/Master/index')));
+const ShanchitryTable = Loadable(lazy(() => import('pages/ShanchitryTable/index')));
 // const Report = Loadable(lazy(() => import('pages/Report/index')));
 const Help = Loadable(lazy(() => import('pages/Help/index')));
 const Brandtable = Loadable(lazy(() => import('pages/Brandtable/index')));
 const MainbatmayaTable = Loadable(lazy(() => import('pages/MainbatmayaTable/index')));
-// const Registerpetient = Loadable(lazy(() => import('pages/Registerpetient/index')));
+const Shanchitre = Loadable(lazy(() => import('pages/Shanchitre/index')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -90,6 +90,18 @@ const MainRoutes = {
         {
             path: 'MainbatmayaTable',
             element: <MainbatmayaTable />
+        },
+        {
+            path: 'Shanchitre',
+            element: <Shanchitre />
+        },
+        {
+            path: 'Shanchitre/:id',
+            element: <Shanchitre />
+        },
+        {
+            path: 'ShanchitryTable',
+            element: <ShanchitryTable />
         },
 
         // {

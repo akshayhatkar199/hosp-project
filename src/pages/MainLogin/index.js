@@ -20,7 +20,10 @@ const MainLogin = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    // console.log("login Componet")
+    // // console.log("login Componet")
+    // const onformsubmit = async (values) => {
+    //     console.log('success', values);
+    // };
 
     const onformsubmit = async (values) => {
         setLoading(true);
@@ -44,7 +47,7 @@ const MainLogin = () => {
                         })
                     );
                     swal('Login', 'Login success full', 'success');
-                    navigate('/Dashboardmain');
+                    navigate('/');
                     // window.location.href = 'http://localhost:3001/free/Dashboardmain';
                     setLoading(false);
                 } else {
@@ -117,8 +120,13 @@ const MainLogin = () => {
                             //   span: 16,
                             // }}
                             >
-                                <Button type="primary" htmlType="submit" loading={loading} className="btn saveclass mybtn mt-3">
-                                    Log In
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    loading={loading}
+                                    className="btn text-center saveclass mybtn mt-3  "
+                                >
+                                    Login
                                 </Button>
 
                                 {/* <Link to="/registration">

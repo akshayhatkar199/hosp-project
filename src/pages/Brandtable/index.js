@@ -5,7 +5,6 @@ import { AudioOutlined } from '@ant-design/icons';
 import DataTable, { FilterComponent } from 'react-data-table-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Space, Table, Tag, DatePicker } from 'antd';
-import Imagelogo from '../../image/logo_hospital.png';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
 import { CSVLink } from 'react-csv';
