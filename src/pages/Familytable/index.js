@@ -103,8 +103,8 @@ const Familytable = () => {
         try {
             const title = 'Family List';
             // title: 'Age',
-            const headers = [['Name']];
-            const tdata = FamilytableData.map((elt) => [elt.Family_NAME]);
+            const headers = [['Id', 'Family Name']];
+            const tdata = FamilytableData.map((elt) => [elt.id, elt.familyName]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);

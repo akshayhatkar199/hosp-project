@@ -145,19 +145,17 @@ const Modify = () => {
 
     const handlePDF = () => {
         try {
-            const title = '';
+            const title = 'Banner List';
             // title: 'Age',
-            const headers = [['Name', 'Date', 'Address', 'Email', 'MOBILE NO', 'Blood', 'Sex', 'Age', 'DESCRIPTION']];
+            const headers = [['Banner Lable', 'Banner Heading', 'Banner Info', 'Image upload', 'Banner StartDate', 'Banner EndDate']];
             const tdata = BrandtableData.map((elt) => [
-                elt.MEMBER_NAME,
-                elt.REGI_DATE,
-                elt.MEMBER_ADD,
-                elt.MEMBER_EMAIL,
-                elt.MOBILE_NO,
-                elt.BLOOD,
-                elt.SEX == 1 ? 'M' : 'F',
-                elt.AGE,
-                elt.DESCRIPTION
+                elt.BannerLable,
+                elt.bannerHeading,
+                elt.bannerInfo,
+                elt.imageupload,
+                elt.bannerStartDate,
+                elt.bannerEndDate
+                // elt.Checkbox == 1 ? <Tag color="green">Verify</Tag> : <Tag color="volcano">UnVerify</Tag>
             ]);
             exportPDFData(title, headers, tdata);
         } catch (error) {

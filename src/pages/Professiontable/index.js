@@ -107,10 +107,10 @@ const Professiontable = () => {
 
     const handlePDF = () => {
         try {
-            const title = 'casepaper List';
+            const title = 'Profession List';
             // title: 'Age',
-            const headers = [['Name']];
-            const tdata = ProfessiontableData.map((elt) => [elt.MEMBER_NAME]);
+            const headers = [['Id', 'Profession Name']];
+            const tdata = ProfessiontableData.map((elt) => [elt.id, elt.professionName]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);

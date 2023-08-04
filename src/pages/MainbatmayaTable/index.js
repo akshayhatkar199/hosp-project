@@ -49,6 +49,7 @@ const MainbatmayaTable = () => {
     // const [modifyExcellsheetdata, setModifyExcellsheetdata] = useState([]);
     const [parpage, setParpage] = useState(10);
     const [loading, setloading] = useState(false);
+    const URLidimage = 'http://localhost:3000/api/fileuploads/batmaya/download/';
     const navigate = useNavigate();
     const [tableParams, setTableParams] = useState({
         pagination: {
@@ -92,16 +93,12 @@ const MainbatmayaTable = () => {
             key: 'id',
             render: (id) => <a>{id}</a>
         },
-        {
-            title: 'Titlebatmya Lable',
-            dataIndex: 'titlebatmyalable',
-            key: 'titlebatmyalable'
-        },
-        {
-            title: 'Image Batmaya',
-            dataIndex: 'imagebatmaya',
-            key: 'imagebatmaya'
-        },
+        // {
+        //     title: 'Titlebatmya Lable',
+        //     dataIndex: 'titlebatmyalable',
+        //     key: 'titlebatmyalable'
+        // },
+
         {
             title: 'Batmya lable',
             dataIndex: 'batmyalable',
@@ -111,6 +108,11 @@ const MainbatmayaTable = () => {
             title: 'Paper Name',
             dataIndex: 'papername',
             key: 'papername'
+        },
+        {
+            title: 'Image Batmaya',
+            dataIndex: 'imagebatmaya',
+            key: 'imagebatmaya'
         },
         {
             title: 'Batmya Date',
@@ -130,20 +132,10 @@ const MainbatmayaTable = () => {
 
     const handlePDF = () => {
         try {
-            const title = '';
+            const title = 'Batmaya List';
             // title: 'Age',
-            const headers = [['Name', 'Date', 'Address', 'Email', 'MOBILE NO', 'Blood', 'Sex', 'Age', 'DESCRIPTION']];
-            const tdata = BrandtableData.map((elt) => [
-                elt.MEMBER_NAME,
-                elt.REGI_DATE,
-                elt.MEMBER_ADD,
-                elt.MEMBER_EMAIL,
-                elt.MOBILE_NO,
-                elt.BLOOD,
-                elt.SEX == 1 ? 'M' : 'F',
-                elt.AGE,
-                elt.DESCRIPTION
-            ]);
+            const headers = [['Batmyalable', 'Papername', 'Batmya date']];
+            const tdata = BrandtableData.map((elt) => [elt.batmyalable, elt.papername, elt.batmyadate]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);

@@ -102,14 +102,13 @@ const Unittable = () => {
         try {
             const title = 'Unit List';
             // title: 'Age',
-            const headers = [['Name']];
-            const tdata = UnittableData.map((elt) => [elt.Unit_NAME]);
+            const headers = [['Id', 'Unit Name']];
+            const tdata = UnittableData.map((elt) => [elt.id, elt.unitName]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);
         }
     };
-
     // <================================== Api call ==========================================>
 
     useEffect(() => {

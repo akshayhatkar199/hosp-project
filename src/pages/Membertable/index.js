@@ -103,8 +103,8 @@ const Membertable = () => {
         try {
             const title = 'Member List';
             // title: 'Age',
-            const headers = [['Name']];
-            const tdata = MembertableData.map((elt) => [elt.MEMBER_NAME]);
+            const headers = [['Id', 'Member Name']];
+            const tdata = MembertableData.map((elt) => [elt.id, elt.memberName]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);

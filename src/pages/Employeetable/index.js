@@ -102,14 +102,13 @@ const Employeetable = () => {
         try {
             const title = 'Employee List';
             // title: 'Age',
-            const headers = [['Name']];
-            const tdata = EmployeetableData.map((elt) => [elt.Employee_NAME]);
+            const headers = [['Id', 'Employee Name']];
+            const tdata = EmployeetableData.map((elt) => [elt.id, elt.employeeName]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);
         }
     };
-
     // <================================== Api call ==========================================>
 
     useEffect(() => {

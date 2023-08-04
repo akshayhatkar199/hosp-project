@@ -132,20 +132,10 @@ const ShanchitryTable = () => {
 
     const handlePDF = () => {
         try {
-            const title = '';
+            const title = 'Shanchitr List';
             // title: 'Age',
-            const headers = [['Name', 'Date', 'Address', 'Email', 'MOBILE NO', 'Blood', 'Sex', 'Age', 'DESCRIPTION']];
-            const tdata = BrandtableData.map((elt) => [
-                elt.MEMBER_NAME,
-                elt.REGI_DATE,
-                elt.MEMBER_ADD,
-                elt.MEMBER_EMAIL,
-                elt.MOBILE_NO,
-                elt.BLOOD,
-                elt.SEX == 1 ? 'M' : 'F',
-                elt.AGE,
-                elt.DESCRIPTION
-            ]);
+            const headers = [['Text Label', 'Date']];
+            const tdata = BrandtableData.map((elt) => [elt.textlabel, elt.shandate]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);

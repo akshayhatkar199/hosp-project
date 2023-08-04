@@ -102,8 +102,8 @@ const Educationtable = () => {
         try {
             const title = 'Education List';
             // title: 'Age',
-            const headers = [['Name']];
-            const tdata = EducationtableData.map((elt) => [elt.MEMBER_NAME]);
+            const headers = [['Id', 'EducationName']];
+            const tdata = EducationtableData.map((elt) => [elt.id, elt.educationName]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);
