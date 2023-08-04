@@ -48,14 +48,14 @@ const items = [
     getItem('Dashboard', '1', <DashboardOutlined />),
     getItem('Website Manage', 'sub2', <AppstoreOutlined />, [
         getItem('Banner create', '4', <UserOutlined />),
-        getItem(' Banner Modify', '5', <ProfileOutlined />),
+        // getItem(' Banner Modify', '5', <ProfileOutlined />),
         getItem('Mainbatmaya ', '6', <UserOutlined />),
-        getItem('MainbatmayaTable ', '7', <ProfileOutlined />),
-        getItem('Shanchitre ', '8', <UserOutlined />),
-        getItem('ShanchitryTable ', '9', <ProfileOutlined />)
+        // getItem('MainbatmayaTable ', '7', <ProfileOutlined />),
+        getItem('Shanchitre ', '8', <UserOutlined />)
+        // getItem('ShanchitryTable ', '9', <ProfileOutlined />)
     ]),
     getItem('Brand Details', 'sub1', <AppstoreOutlined />, [
-        getItem('Brand Table ', '2', <ProfileOutlined />),
+        // getItem('Brand Table ', '2', <ProfileOutlined />),
         getItem('Brand From', '3', <ProfileOutlined />)
     ]),
     getItem('Masters', 'sub3', <AppstoreOutlined />, [
