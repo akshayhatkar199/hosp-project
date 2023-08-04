@@ -58,6 +58,16 @@ const items = [
         getItem('Brand Table ', '2', <ProfileOutlined />),
         getItem('Brand From', '3', <ProfileOutlined />)
     ]),
+    getItem('Masters', 'sub3', <AppstoreOutlined />, [
+        getItem('Education create', '11', <UserOutlined />),
+        getItem('Profession create ', '12', <ProfileOutlined />),
+        getItem('Member create ', '13', <ProfileOutlined />),
+        getItem('Employee create ', '14', <ProfileOutlined />),
+        getItem('Unit create ', '15', <ProfileOutlined />),
+        getItem('Family create ', '16', <ProfileOutlined />)
+
+        // getItem(' Education Details', '12', <ProfileOutlined />)
+    ]),
     // getItem('Brand Details', 'sub1', <AppstoreOutlined />, [
     //     getItem('Mainbatmaya ', '2', <ProfileOutlined />),
     //     getItem('Brand From', '3', <ProfileOutlined />)
@@ -139,6 +149,38 @@ const DrawerContent = () => {
             });
             // navigate(`/mainLogin`);
 
+            console.log(item.key);
+        }
+        if (item.key == 11) {
+            navigate(`/EducationCreate`);
+            console.log(item.key);
+        }
+        // if (item.key == 12) {
+        //     navigate(`/Educationtable`);
+        //     console.log(item.key);
+        // }
+        if (item.key == 12) {
+            navigate(`/Professionfrom`);
+            console.log(item.key);
+        }
+        // if (item.key == 14) {
+        //     navigate(`/Professiontable`);
+        //     console.log(item.key);
+        // }
+        if (item.key == 13) {
+            navigate(`/MemberCreate`);
+            console.log(item.key);
+        }
+        if (item.key == 14) {
+            navigate(`/EmployeeCreate`);
+            console.log(item.key);
+        }
+        if (item.key == 15) {
+            navigate(`/UnitCreate`);
+            console.log(item.key);
+        }
+        if (item.key == 16) {
+            navigate(`/FamilyCreate`);
             console.log(item.key);
         }
 

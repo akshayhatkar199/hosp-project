@@ -20,3 +20,7 @@ export const ShanchitrUpdateByApi = async (payloadData) => {
     let res = await axiosPrivate.patch('/shanshitrydata/' + payloadData.id, payloadData);
     return res.data;
 };
+export const shanchitrydropdwonGetByApi = async (payloadData) => {
+    let res = await axiosPrivate.post('/shanshitrydata/shanchitrydropdwonGetByApi', payloadData);
+    return res.data;
+};

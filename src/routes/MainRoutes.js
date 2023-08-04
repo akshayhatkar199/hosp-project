@@ -20,6 +20,24 @@ const Brandtable = Loadable(lazy(() => import('pages/Brandtable/index')));
 const MainbatmayaTable = Loadable(lazy(() => import('pages/MainbatmayaTable/index')));
 const Shanchitre = Loadable(lazy(() => import('pages/Shanchitre/index')));
 
+const EducationCreate = Loadable(lazy(() => import('pages/Educationform/index')));
+const Educationtable = Loadable(lazy(() => import('pages/Educationtable/index')));
+
+const Professionfrom = Loadable(lazy(() => import('pages/Professionfrom/index')));
+const Professiontable = Loadable(lazy(() => import('pages/Professiontable/index')));
+
+const MemberCreate = Loadable(lazy(() => import('pages/Memberform/index')));
+const Membertable = Loadable(lazy(() => import('pages/Membertable/index')));
+
+const EmployeeCreate = Loadable(lazy(() => import('pages/Employeeform/index')));
+const Employeetable = Loadable(lazy(() => import('pages/Employeetable/index')));
+
+const UnitCreate = Loadable(lazy(() => import('pages/Unitform/index')));
+const Unittable = Loadable(lazy(() => import('pages/Unittable/index')));
+
+const FamilyCreate = Loadable(lazy(() => import('pages/Familyform/index')));
+const Familytable = Loadable(lazy(() => import('pages/Familytable/index')));
+
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
 
@@ -102,6 +120,78 @@ const MainRoutes = {
         {
             path: 'ShanchitryTable',
             element: <ShanchitryTable />
+        },
+        {
+            path: 'EducationCreate',
+            element: <EducationCreate />
+        },
+        {
+            path: 'EducationCreate/:id',
+            element: <EducationCreate />
+        },
+        {
+            path: 'EducationTable',
+            element: <Educationtable />
+        },
+        {
+            path: 'Professionfrom',
+            element: <Professionfrom />
+        },
+        {
+            path: 'Professionfrom/:id',
+            element: <Professionfrom />
+        },
+        {
+            path: 'Professiontable',
+            element: <Professiontable />
+        },
+        {
+            path: 'MemberCreate',
+            element: <MemberCreate />
+        },
+        {
+            path: 'MemberCreate/:id',
+            element: <MemberCreate />
+        },
+        {
+            path: 'Membertable',
+            element: <Membertable />
+        },
+        {
+            path: 'EmployeeCreate',
+            element: <EmployeeCreate />
+        },
+        {
+            path: 'EmployeeCreate/:id',
+            element: <EmployeeCreate />
+        },
+        {
+            path: 'Employeetable',
+            element: <Employeetable />
+        },
+        {
+            path: 'UnitCreate',
+            element: <UnitCreate />
+        },
+        {
+            path: 'UnitCreate/:id',
+            element: <UnitCreate />
+        },
+        {
+            path: 'Unittable',
+            element: <Unittable />
+        },
+        {
+            path: 'FamilyCreate',
+            element: <FamilyCreate />
+        },
+        {
+            path: 'FamilyCreate/:id',
+            element: <FamilyCreate />
+        },
+        {
+            path: 'Familytable',
+            element: <Familytable />
         },
 
         // {

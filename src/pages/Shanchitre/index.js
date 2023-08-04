@@ -23,6 +23,7 @@ import {
     ShanchitriddetailsGetidByApi,
     ShanchitrsubmitByApi,
     ShanchitrUpdateByApi,
+    shanchitrydropdwonGetByApi,
     uploadImgShanchitrApi
 } from 'components/Helper/Shanchitr';
 let timeout;
@@ -36,6 +37,9 @@ const Shanchitre = () => {
     const [baneerloding, setBaneerloding] = useState(false);
     const [shanchitrdata, setShanchitrdata] = useState(null);
     const [placement, SetPlacement] = useState('bottomRight');
+    const [shanchitrysortNodata, setShanchitrysortNodata] = useState([]);
+    const [data, setDatashachitry] = useState([]);
+    const [sortNumberId, setSortNumberId] = useState();
     let { id } = useParams();
     const [form] = Form.useForm();
     const navigate = useNavigate();
@@ -101,6 +105,7 @@ const Shanchitre = () => {
                     response.shandate = dayjs(response.shandate, dateFormat); // moment(new Date(response.REGI_DATE)).format('YYYY-MM-DD'); // moment();
                     setShanchitrdata(response);
                     console.log('response', response);
+                    setSortNumberId(response.sortNumber);
                     form.resetFields();
                     console.log('res', res);
                     // console.log(' response', response);
@@ -132,6 +137,7 @@ const Shanchitre = () => {
                         }
                         let payloadData = {
                             ...values,
+                            sortNumber: sortNumberId,
                             shanchitryimage: filename,
                             shandate: moment(new Date(values.shandate)).format('DD-MM-YYYY')
                         };
@@ -175,6 +181,7 @@ const Shanchitre = () => {
             let payloadData = {
                 ...values,
                 id: id,
+                sortNumber: sortNumberId,
                 shanchitryimage: filename,
                 shandate: moment(new Date(values.shandate)).format('DD-MM-YYYY')
             };
@@ -214,6 +221,42 @@ const Shanchitre = () => {
         SetPlacement(e.target.value);
     };
     const validationnewdate = new Date();
+    // <================slecte tag============================================================>
+    const shachitryhandleSearch = (newValue) => {
+        if (newValue) {
+            fetchshachitr(newValue, setDatashachitry);
+        } else {
+            setDatashachitry([]);
+        }
+    };
+    const shachitryhandleChange = (newValue) => {
+        setSortNumberId(newValue);
+    };
+    const fetchshachitr = (sortNumberId, callback) => {
+        if (timeout) {
+            clearTimeout(timeout);
+            timeout = null;
+        }
+        currentValue = sortNumberId;
+        const fake = () => {
+            const payloadData = {
+                sortNumber: sortNumberId,
+                search: currentValue
+            };
+            shanchitrydropdwonGetByApi(payloadData).then((res) => {
+                console.log('res--', res);
+                setShanchitrysortNodata(res.data);
+                if (currentValue === value) {
+                    const Cdata = res.data.map((item) => ({
+                        value: item.id,
+                        text: item.sortNumber
+                    }));
+                    callback(Cdata);
+                }
+            });
+        };
+        timeout = setTimeout(fake, 300);
+    };
     // <================================== End Api call ==========================================>
     return (
         <>
@@ -338,6 +381,43 @@ const Shanchitre = () => {
                                 </Form.Item>
                                 <span className="textlabel">
                                     Date<span className="text-danger">*</span>{' '}
+                                </span>
+                            </Grid>
+                            <Grid item lg={4} sm={6} xs={12}>
+                                <Form.Item
+                                    name="sortNumber"
+                                    id="outlined-basic"
+                                    variant="outlined"
+                                    type="text"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please Enter your sort Number!'
+                                        }
+                                    ]}
+                                    hasFeedback
+                                >
+                                    <Select
+                                        showSearch
+                                        value={shanchitrysortNodata}
+                                        placeholder={'search'}
+                                        // style={{
+                                        //     width: 200
+                                        // }}
+                                        defaultActiveFirstOption={false}
+                                        showArrow={true}
+                                        filterOption={false}
+                                        onSearch={shachitryhandleSearch}
+                                        onChange={shachitryhandleChange}
+                                        notFoundContent={null}
+                                        options={(shanchitrysortNodata || []).map((d) => ({
+                                            value: d.id,
+                                            label: d.sortNumber
+                                        }))}
+                                    />
+                                </Form.Item>
+                                <span className="textlabel">
+                                    search<span className="text-danger">*</span>
                                 </span>
                             </Grid>
                             <Grid item xs={12} lg={1} sm={12} xl={1}>

@@ -48,7 +48,7 @@ const MainLogin = () => {
                     );
                     swal('Login', 'Login success full', 'success');
                     navigate('/');
-                    // window.location.href = 'http://localhost:3001/free/Dashboardmain';
+                    // window.location.href = 'http://localhost:3001/';
                     setLoading(false);
                 } else {
                     console.log('In valid Email and Password');
@@ -71,7 +71,7 @@ const MainLogin = () => {
                 <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 12 }} lg={{ span: 12 }} xl={{ span: 8 }} xxl={{ span: 8 }}>
                     <Card className="login-card text-center mycards" bordered={false}>
                         {/* <img src={Image} className=" login-logo" /> */}
-                        <h4 className="title-login">Sai Clinic</h4>
+                        <h4 className="title-login">Satyajeet Tambe</h4>
 
                         <Form
                             layout="vertical"
