@@ -18,23 +18,23 @@ import swal from 'sweetalert';
 import { UploadOutlined, QuestionOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import dayjs from 'dayjs';
-import './mainbatmaya.css';
+import './photogallary.css';
 import {
-    batmayadetailsGetidByApi,
-    batmayadetailsUpdateByApi,
-    batmyafromsubmitByApi,
-    uploadbatmayaImgbannerApi
-} from 'components/Helper/batmaya';
+    PhotogallarydetailsGetidByApi,
+    PhotogallarydetailsUpdateByApi,
+    PhotogallaryfromsubmitByApi,
+    uploadPhotogallaryImgApi
+} from 'components/Helper/photogallary';
 let timeout;
 let currentValue;
 const { RangePicker } = DatePicker;
 // const dateFormat = 'YYYY-MM-DD';
 const dateFormat = 'DD-MM-YYYY';
 
-const Mainbatmaya = () => {
+const PhotoGallary = () => {
     const [loading, setloading] = useState(false);
-    const [baneerloding, setBaneerloding] = useState(false);
-    const [batmayadata, setbatmayadata] = useState(null);
+    const [gallaryloding, setGallaryloding] = useState(false);
+    const [photoGallarydata, setPhotoGallarydata] = useState(null);
     const [checkboxxx, setCheckbox] = useState(false);
     const [placement, SetPlacement] = useState('bottomRight');
     let { id } = useParams();
@@ -47,8 +47,8 @@ const Mainbatmaya = () => {
     // const [bnnerPhoto, setBnnerPhoto] = useState();
     // const [preview, setPreview] = useState();
     const { TextArea } = Input;
-    // console.log('batmayadata', batmayadata);
-    const URLidimage = 'http://localhost:3000/api/fileuploads/batmaya/download/';
+    // console.log('photoGallarydata', photoGallarydata);
+    const URLidimage = 'http://localhost:3000/api/fileuploads/photoGallary/download/';
     const props = {
         listType: 'picture',
         defaultFileList: [...fileList],
@@ -89,28 +89,27 @@ const Mainbatmaya = () => {
         if (typeof id !== 'undefined') {
             getbannertailbyid();
         } else {
-            form.setFieldValue('batmyadate', dayjs(new Date()));
+            // form.setFieldValue('batmyadate', dayjs(new Date()));
         }
     }, [id]);
     const getbannertailbyid = () => {
-        setBaneerloding(true);
-        batmayadetailsGetidByApi(id)
+        setGallaryloding(true);
+        PhotogallarydetailsGetidByApi(id)
             .then(
                 async (res) => {
                     console.log(' success');
                     let response = res;
-                    response.batmyadate = dayjs(response.batmyadate, dateFormat); // moment(new Date(response.REGI_DATE)).format('YYYY-MM-DD'); // moment();
-                    setbatmayadata(response);
+                    setPhotoGallarydata(response);
                     setCheckbox(response.Checkbox);
                     console.log('response', response);
                     form.resetFields();
                     console.log('res', res);
                     // console.log(' response', response);
-                    setBaneerloding(false);
+                    setGallaryloding(false);
                 },
                 (err) => {
                     console.log('err', err);
-                    setBaneerloding(false);
+                    setGallaryloding(false);
                 }
             )
             .catch();
@@ -125,7 +124,7 @@ const Mainbatmaya = () => {
             if (values.image) {
                 formData.append('files', values.image.file);
             }
-            uploadbatmayaImgbannerApi(formData, 'batmaya')
+            uploadPhotogallaryImgApi(formData, 'photoGallary')
                 .then(
                     async (res) => {
                         let filename = '';
@@ -134,16 +133,16 @@ const Mainbatmaya = () => {
                         }
                         let payloadData = {
                             ...values,
-                            imagebatmaya: filename,
-                            Checkbox: checkboxxx,
-                            batmyadate: moment(new Date(values.batmyadate)).format('DD-MM-YYYY')
+                            photogallaryImage: filename,
+                            Checkbox: checkboxxx
+                            // batmyadate: moment(new Date(values.batmyadate)).format('DD-MM-YYYY')
                         };
                         console.log('payloaddata', payloadData);
-                        batmyafromsubmitByApi(payloadData).then(
+                        PhotogallaryfromsubmitByApi(payloadData).then(
                             (res) => {
                                 console.log('resbanner', res);
                                 swal('success', 'success fully', 'success');
-                                navigate('/MainbatmayaTable');
+                                navigate('/PhotoGallaryTable');
                                 setloading(false);
                             },
                             (err) => {
@@ -160,13 +159,13 @@ const Mainbatmaya = () => {
                 )
                 .catch();
         } else {
-            var filename = batmayadata.imagebatmaya;
+            var filename = photoGallarydata.photogallaryImage;
             // setBnnerPhoto(filename);
             const formData = new FormData();
             if (values.image && values.image.file) {
                 formData.append('files', values.image.file);
                 console.log('plase apload imag');
-                await uploadbatmayaImgbannerApi(formData, 'batmaya').then(async (res) => {
+                await uploadPhotogallaryImgApi(formData, 'photoGallary').then(async (res) => {
                     if (res.result && res.result.files && res.result.files.files.length > 0) {
                         filename = res.result.files.files[0].name;
                     }
@@ -178,24 +177,24 @@ const Mainbatmaya = () => {
             let payloadData = {
                 ...values,
                 id: id,
-                imagebatmaya: filename,
-                Checkbox: checkboxxx,
-                batmyadate: moment(new Date(values.batmyadate)).format('DD-MM-YYYY')
+                photogallaryImage: filename,
+                Checkbox: checkboxxx
+                // batmyadate: moment(new Date(values.batmyadate)).format('DD-MM-YYYY')
             };
             setloading(true);
-            await batmayadetailsUpdateByApi(payloadData)
+            await PhotogallarydetailsUpdateByApi(payloadData)
                 .then(
                     async (res) => {
                         console.log('res', res);
                         console.log(' success');
-                        swal('batmaya Update', 'Update success Fully', 'success');
-                        navigate('/MainbatmayaTable');
+                        swal('photoGallary Update', 'Update success Fully', 'success');
+                        navigate('/PhotoGallaryTable');
                         setloading(false);
                     },
                     (err) => {
                         console.log('error', err);
                         setloading(false);
-                        swal('batmaya', 'Not updated', 'error');
+                        swal('photoGallary', 'Not updated', 'error');
                     }
                 )
                 .catch();
@@ -228,7 +227,7 @@ const Mainbatmaya = () => {
                     Home
                 </small>
                 {/* {'/'} <b>Mainbatmaya Manage </b> */}
-                {'/'} <b>बातम्या आणि लेख मॅनेज</b>
+                {'/'} <b>फोटो गॅलरी मॅनेज</b>
             </Typography>
             <br></br>
             <Card className="driver-create-card ">
@@ -244,14 +243,14 @@ const Mainbatmaya = () => {
                     <h5>
                         <span className=" text-start">
                             {/* <b>Mainbatmaya Manage</b> */}
-                            <b>बातम्या आणि लेख मॅनेज</b>
+                            <b>फोटो गॅलरी मॅनेज</b>
                         </span>
                     </h5>
                 </div>
                 <hr className="MuiDivider-root MuiDivider-fullWidth css-1wnin34-MuiDivider-root"></hr>
                 <Form
                     name="basic"
-                    initialValues={batmayadata}
+                    initialValues={photoGallarydata}
                     // layout="vertical"
                     // labelCol={{ span: 22 }}
                     // wrapperCol={{ span: 22 }}
@@ -262,64 +261,21 @@ const Mainbatmaya = () => {
                 >
                     <Typography variant="body2">
                         <Grid container spacing={2}>
-                            {/* <Grid item xs={12} lg={4} sm={12} xl={4}>
-                                <Form.Item
-                                    // label="Description"
-                                    name="titlebatmyalable"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please titlebatmya lable.'
-                                        }
-                                    ]}
-                                >
-                                    <Input
-                                        name=" titlebatmyalable"
-                                        className="datepicinp textfont"
-                                        placeholder={'Enter titlebatmya lable'}
-                                    />
-                                </Form.Item>
-                                <span className="textlabel">
-                                    Titlebatmya Lable<span className="text-danger">*</span>{' '}
-                                </span>
-                            </Grid> */}
                             <Grid item xs={12} lg={4} sm={12} xl={4}>
                                 <Form.Item
                                     // label="Description"
-                                    name="batmyalable"
+                                    name="galllarytext"
                                     rules={[
                                         {
                                             required: true,
-                                            message: 'Please batmya lable.'
+                                            message: 'Please Galllary Text.'
                                         }
                                     ]}
                                 >
-                                    <TextArea
-                                        row={2}
-                                        name="batmyalable"
-                                        className="datepicinp textfont"
-                                        placeholder={'Enter batmya lable'}
-                                    />
-                                </Form.Item>
-                                <span className="textlabelbatmaya">
-                                    Batmya Lable<span className="text-danger">*</span>
-                                </span>
-                            </Grid>
-                            <Grid item xs={12} lg={4} sm={12} xl={4}>
-                                <Form.Item
-                                    // label="Description"
-                                    name="papername"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please paper name.'
-                                        }
-                                    ]}
-                                >
-                                    <Input name="papername" className="datepicinp textfont" placeholder={'Enter paper name'} />
+                                    <Input name="galllarytext" className="datepicinp textfont" placeholder={'Enter Galllary Text'} />
                                 </Form.Item>
                                 <span className="textlabel">
-                                    Paper Name<span className="text-danger">*</span>{' '}
+                                    Galllary Text<span className="text-danger">*</span>{' '}
                                 </span>
                             </Grid>
                             <Grid item xs={12} lg={2} sm={12} xl={2}>
@@ -337,7 +293,7 @@ const Mainbatmaya = () => {
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Please Enter image batmaya.'
+                                                message: 'Please Enter image .'
                                             }
                                         ]}
                                     >
@@ -354,7 +310,7 @@ const Mainbatmaya = () => {
                                 </span>
                             </Grid>
 
-                            <Grid item xs={12} lg={2} sm={12} xl={2}>
+                            {/* <Grid item xs={12} lg={2} sm={12} xl={2}>
                                 <Form.Item
                                     // label="Description"
                                     name="batmyadate"
@@ -388,7 +344,7 @@ const Mainbatmaya = () => {
                                 <span className="textlabel">
                                     start Date<span className="text-danger">*</span>{' '}
                                 </span>
-                            </Grid>
+                            </Grid> */}
                             <Grid item xs={12} lg={1} sm={12} xl={1}>
                                 <Form.Item
                                     // label="Description"
@@ -410,11 +366,11 @@ const Mainbatmaya = () => {
                             {/* <Grid item xs={12} lg={4} sm={12} xl={4}></Grid> */}
                             <Grid item xs={12} lg={4} sm={12} xl={4}>
                                 {id ? (
-                                    batmayadata && batmayadata.imagebatmaya && batmayadata.imagebatmaya != '' ? (
+                                    photoGallarydata && photoGallarydata.photogallaryImage && photoGallarydata.photogallaryImage != '' ? (
                                         <>
                                             <div>
                                                 <img
-                                                    src={URLidimage + batmayadata.imagebatmaya}
+                                                    src={URLidimage + photoGallarydata.photogallaryImage}
                                                     alt=""
                                                     className="imagePreview img-thumbnail imagespositionid"
                                                 />
@@ -431,7 +387,7 @@ const Mainbatmaya = () => {
                         <Grid item xs={12} lg={12} sm={12} xl={12}>
                             <Form.Item>
                                 <div>
-                                    <Link to="/MainbatmayaTable">
+                                    <Link to="/PhotoGallaryTable">
                                         <Button
                                             className="btn btn-danger m-1 text-center  float-end"
                                             style={{ paddingtop: '3px', height: '38px' }}
@@ -464,4 +420,4 @@ const Mainbatmaya = () => {
     );
 };
 
-export default Mainbatmaya;
+export default PhotoGallary;

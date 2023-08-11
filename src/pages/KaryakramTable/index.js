@@ -14,7 +14,7 @@ import moment from 'moment';
 import { debounce } from 'debounce';
 import dayjs from 'dayjs';
 import { useReactToPrint } from 'react-to-print';
-import './mainbatmayatable.css';
+import './karyakramtable.css';
 import { exportPDFData } from '../../utility/Common';
 import {
     faFileExcel,
@@ -38,10 +38,11 @@ import { filter } from 'lodash';
 // import { detailsExcellsheetByApi } from '../../components/Helper/details';
 import { bannertablesearchByApi } from 'components/Helper/bannerdetails';
 import { batmayatablesearchByApi } from 'components/Helper/batmaya';
+import { karyakramtablesearchByApi } from 'components/Helper/karyakram';
 
 const onSearch = (value) => console.log(value);
 
-const MainbatmayaTable = () => {
+const KaryakramTable = () => {
     // const conponentPDF = useRef();
     const [placement, SetPlacement] = useState('bottomRight');
     const [BrandtableData, setBrandtableData] = useState([]);
@@ -76,7 +77,7 @@ const MainbatmayaTable = () => {
             render: (_, record) => (
                 <Space size="middle">
                     {/* <button className="m-1 btn btn-outline-withe btn-sm h6" size="small"> */}
-                    <Link to={`/Mainbatmaya/${record.id}`}>
+                    <Link to={`/Karyakram/${record.id}`}>
                         <FontAwesomeIcon icon={faEye} className="m-1 h5  icon text-center " style={{ color: '#005ca1' }} />
                     </Link>
                     {/* <FontAwesomeIcon icon={faXmark} className="m-1 h5  icon text-center h6" style={{ color: '#005ca1' }} /> */}
@@ -93,31 +94,40 @@ const MainbatmayaTable = () => {
             key: 'id',
             render: (id) => <a>{id}</a>
         },
-        // {
-        //     title: 'Titlebatmya Lable',
-        //     dataIndex: 'titlebatmyalable',
-        //     key: 'titlebatmyalable'
-        // },
-
         {
-            title: 'Batmya lable',
-            dataIndex: 'batmyalable',
-            key: 'batmyalable'
+            title: 'karyakram Image',
+            dataIndex: 'karyakramImage',
+            key: 'karyakramImage'
         },
         {
-            title: 'Paper Name',
-            dataIndex: 'papername',
-            key: 'papername'
+            title: 'Agamikaryakram Title',
+            dataIndex: 'AgamikaryakramTitle',
+            key: 'AgamikaryakramTitle'
         },
         {
-            title: 'Image Batmaya',
-            dataIndex: 'imagebatmaya',
-            key: 'imagebatmaya'
+            title: ' Adrees',
+            dataIndex: 'AgamikaryakramAdrees',
+            key: 'AgamikaryakramAdrees'
         },
         {
-            title: 'Batmya Date',
-            dataIndex: 'batmyadate',
-            key: 'batmyadate'
+            title: 'Date',
+            dataIndex: 'AgamikaryakramDate',
+            key: 'AgamikaryakramDate'
+        },
+        {
+            title: ' Time',
+            dataIndex: 'AgamikaryakramTime',
+            key: 'AgamikaryakramTime'
+        },
+        {
+            title: 'Footer Text',
+            dataIndex: 'AgamikaryakramFooterText',
+            key: 'AgamikaryakramFooterText'
+        },
+        {
+            title: 'Footer Name-Contact',
+            dataIndex: 'AgamikaryakramFooterContact',
+            key: 'AgamikaryakramFooterContact'
         },
         {
             title: 'Actions',
@@ -177,11 +187,9 @@ const MainbatmayaTable = () => {
         let payloadData = {
             offset: offset,
             limit: 10,
-            search: multiplesearchinput,
-            papername: multiplesearchinput,
-            batmyalable: multiplesearchinput
+            search: multiplesearchinput
         };
-        batmayatablesearchByApi(payloadData).then(
+        karyakramtablesearchByApi(payloadData).then(
             async (res) => {
                 console.log('res=>', res);
                 // let tableParmsSample = tableParams;
@@ -287,7 +295,7 @@ const MainbatmayaTable = () => {
                         </span>
                     </Grid>
                     <Grid item lg={6} xs={12} sm={12} md={6} className="text-end">
-                        <Link to="/Mainbatmaya">
+                        <Link to="/Karyakram">
                             <button className="btn btn-primary  mx-1 m-1 btn-sm" type="primary">
                                 <span className="plusicon">+</span> Add New
                             </button>
@@ -370,4 +378,4 @@ const MainbatmayaTable = () => {
     );
 };
 
-export default MainbatmayaTable;
+export default KaryakramTable;

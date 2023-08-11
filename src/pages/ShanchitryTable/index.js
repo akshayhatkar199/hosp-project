@@ -109,6 +109,19 @@ const ShanchitryTable = () => {
             title: 'Date',
             dataIndex: 'shandate',
             key: 'shandate'
+        },
+        {
+            title: 'sortNumber',
+            dataIndex: 'sortNumber',
+            key: 'sortNumber'
+        },
+        {
+            title: 'Actions',
+            dataIndex: 'Checkbox',
+            key: 'Checkbox',
+            render: (Checkbox) => {
+                return <p>{Checkbox == 1 ? <Tag color="green">Verify</Tag> : <Tag color="volcano">UnVerify</Tag>}</p>;
+            }
         }
 
         // {

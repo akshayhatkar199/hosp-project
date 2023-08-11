@@ -51,8 +51,11 @@ const items = [
         // getItem(' Banner Modify', '5', <ProfileOutlined />),
         getItem('Mainbatmaya ', '6', <UserOutlined />),
         // getItem('MainbatmayaTable ', '7', <ProfileOutlined />),
-        getItem('Shanchitre ', '8', <UserOutlined />)
+        getItem('Shanchitre ', '8', <UserOutlined />),
         // getItem('ShanchitryTable ', '9', <ProfileOutlined />)
+        getItem('Karyakram create ', '17', <UserOutlined />),
+        getItem('Karyakram Photo Table ', '18', <UserOutlined />),
+        getItem('PhotoGallary ', '19', <UserOutlined />)
     ]),
     getItem('Brand Details', 'sub1', <AppstoreOutlined />, [
         // getItem('Brand Table ', '2', <ProfileOutlined />),
@@ -181,6 +184,18 @@ const DrawerContent = () => {
         }
         if (item.key == 16) {
             navigate(`/FamilyCreate`);
+            console.log(item.key);
+        }
+        if (item.key == 17) {
+            navigate(`/Karyakram`);
+            console.log(item.key);
+        }
+        if (item.key == 18) {
+            navigate(`/Photokryakrmtwo`);
+            console.log(item.key);
+        }
+        if (item.key == 19) {
+            navigate(`/PhotoGallary`);
             console.log(item.key);
         }
 

@@ -16,9 +16,16 @@ import { TextareaAutosize } from '@mui/base';
 import swal from 'sweetalert';
 import { UploadOutlined, QuestionOutlined } from '@ant-design/icons';
 import moment from 'moment';
+import CreatableSelect from 'react-select/creatable';
+// import { colourOptions } from '../data';
 import dayjs from 'dayjs';
 import './Memberfrom.css';
-import { memberdetailsGetidByApi, memberdetailsUpdateByApi, memberfromsubmitByApi } from 'components/Helper/membermaster';
+import {
+    memberdetailsGetidByApi,
+    memberdetailsUpdateByApi,
+    memberfromsubmitByApi,
+    MembermasterdropdownGetByApi
+} from 'components/Helper/membermaster';
 let timeout;
 let currentValue;
 const { RangePicker } = DatePicker;
@@ -28,8 +35,12 @@ const Memberform = () => {
     const [loading, setloading] = useState(false);
     const [Memberloding, setMemberloding] = useState(false);
     const [Memberetiddata, setEducationetiddata] = useState(null);
+    const [data, setDataMember] = useState([]);
     const [checkboxxx, setCheckbox] = useState(false);
+    const [memberIdsearchData, setMemberIdsearchData] = useState([]);
+    const [idMember, setIdMember] = useState([]);
     const [placement, SetPlacement] = useState('bottomRight');
+    const [memberIdAdd, setMemberId] = useState();
     let { id } = useParams();
     const [form] = Form.useForm();
     const navigate = useNavigate();
@@ -116,6 +127,43 @@ const Memberform = () => {
     // const onFinishFailedbannerslider = (value) => {
     //     console.log('value', value);
     // };
+    // <=============================================================================================>
+    const memberhandleSearch = (newValue) => {
+        if (newValue) {
+            fetchmember(newValue, setDataMember);
+        } else {
+            setDataMember([]);
+        }
+    };
+    const memberhandleChange = (newValue) => {
+        setMemberId(newValue);
+    };
+    const fetchmember = (memberIdAdd, callback) => {
+        if (timeout) {
+            clearTimeout(timeout);
+            timeout = null;
+        }
+        currentValue = memberIdAdd;
+        const fake = () => {
+            const payloadData = {
+                memberName: memberIdAdd,
+                search: currentValue,
+                searchid: currentValue
+            };
+            MembermasterdropdownGetByApi(payloadData).then((res) => {
+                console.log('res--', res);
+                setMemberIdsearchData(res.data);
+                if (currentValue === memberIdAdd) {
+                    const Cdata = res.data.map((item) => ({
+                        value: item.id,
+                        text: item.id + item.memberName
+                    }));
+                    callback(Cdata);
+                }
+            });
+        };
+        timeout = setTimeout(fake, 300);
+    };
 
     // <================================== End Api call ==========================================>
     return (
@@ -171,6 +219,67 @@ const Memberform = () => {
                                     Member Name<span className="text-danger">*</span>{' '}
                                 </span>
                             </Grid>
+                            <Grid item xs={12} lg={4} sm={12} xl={4}>
+                                <Form.Item
+                                    name="memberName"
+                                    id="outlined-basic"
+                                    variant="outlined"
+                                    type="text"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please Enter your sort Number!'
+                                        }
+                                    ]}
+                                    hasFeedback
+                                    // dropdownRender
+                                >
+                                    <Select
+                                        showSearch
+                                        value={memberIdsearchData}
+                                        placeholder={'search'}
+                                        defaultActiveFirstOption={false}
+                                        showArrow={true}
+                                        filterOption={false}
+                                        labelInValue={false}
+                                        onSearch={memberhandleSearch}
+                                        onChange={memberhandleChange}
+                                        notFoundContent={null}
+                                        options={(memberIdsearchData || []).map((d) => ({
+                                            value: d.id,
+                                            label: d.id + ' ' + d.memberName
+                                        }))}
+                                    />
+                                </Form.Item>
+                            </Grid>
+                            {/* <Grid item xs={12} lg={4} sm={12} xl={4}>
+                                <Form.Item
+                                    name="memberName"
+                                    id="outlined-basic"
+                                    variant="outlined"
+                                    type="text"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please Enter your sort Number!'
+                                        }
+                                    ]}
+                                    hasFeedback
+                                >
+                                    <CreatableSelect
+                                        isNOClearable
+                                        onChange={memberhandleChange}
+                                        name="memberName"
+                                        placeholder={'search'}
+                                        onSearch={memberhandleSearch}
+                                        value={(memberIdsearchData || []).map((d) => ({
+                                            value: d.id,
+                                            label: d.id + ' ' + d.memberName
+                                        }))}
+                                        options={memberIdsearchData}
+                                    />
+                                </Form.Item>
+                            </Grid> */}
                         </Grid>
                         <Grid item xs={12} lg={12} sm={12} xl={12}>
                             <Form.Item>

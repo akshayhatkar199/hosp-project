@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
-import { Col, Row } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
-import { Card } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { Checkbox, Form, Input } from 'antd';
-import { message, Space } from 'antd';
+import { Checkbox, Form, Input, message, Space, Card, Col, Row } from 'antd';
 import { checkLogin } from '../../store/reducers/userReducer';
 import swal from 'sweetalert';
-
 // import Image from '../../images/logo-login.png';
 import './mainlogin.css';
 import { loginByApi } from 'components/Helper/login';

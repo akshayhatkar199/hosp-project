@@ -36,8 +36,16 @@ const Shanchitre = () => {
     const [loading, setloading] = useState(false);
     const [baneerloding, setBaneerloding] = useState(false);
     const [shanchitrdata, setShanchitrdata] = useState(null);
+    const [checkboxxx, setCheckbox] = useState(false);
     const [placement, SetPlacement] = useState('bottomRight');
-    const [shanchitrysortNodata, setShanchitrysortNodata] = useState([]);
+    const [shanchitrysortNodata, setShanchitrysortNodata] = useState([
+        { id: 1, sortNumber: '1' },
+        { id: 2, sortNumber: '2' },
+        { id: 3, sortNumber: '3' },
+        { id: 4, sortNumber: '4' },
+        { id: 5, sortNumber: '5' },
+        { id: 6, sortNumber: '6' }
+    ]);
     const [data, setDatashachitry] = useState([]);
     const [sortNumberId, setSortNumberId] = useState();
     let { id } = useParams();
@@ -106,6 +114,7 @@ const Shanchitre = () => {
                     setShanchitrdata(response);
                     console.log('response', response);
                     setSortNumberId(response.sortNumber);
+                    setCheckbox(response.Checkbox);
                     form.resetFields();
                     console.log('res', res);
                     // console.log(' response', response);
@@ -138,6 +147,7 @@ const Shanchitre = () => {
                         let payloadData = {
                             ...values,
                             sortNumber: sortNumberId,
+                            Checkbox: checkboxxx,
                             shanchitryimage: filename,
                             shandate: moment(new Date(values.shandate)).format('DD-MM-YYYY')
                         };
@@ -182,6 +192,7 @@ const Shanchitre = () => {
                 ...values,
                 id: id,
                 sortNumber: sortNumberId,
+                Checkbox: checkboxxx,
                 shanchitryimage: filename,
                 shandate: moment(new Date(values.shandate)).format('DD-MM-YYYY')
             };
@@ -209,14 +220,16 @@ const Shanchitre = () => {
     const onFinishFailedbannerslider = (value) => {
         console.log('value', value);
     };
-    // const onChange = (e) => {
-    //     console.log(`checked = ${e.target.checked}`);
-    //     if (e.target.checked === true) {
-    //         return 1;
-    //     } else {
-    //         return 0;
-    //     }
-    // };
+    const onChange = (e) => {
+        console.log(`checked = ${e.target.checked}`);
+        if (e.target.checked == true) {
+            console.log('checkbox-1');
+            setCheckbox(1);
+        } else {
+            console.log('checkbox-0');
+            setCheckbox(0);
+        }
+    };
     const placementChange = (e) => {
         SetPlacement(e.target.value);
     };
@@ -224,7 +237,7 @@ const Shanchitre = () => {
     // <================slecte tag============================================================>
     const shachitryhandleSearch = (newValue) => {
         if (newValue) {
-            fetchshachitr(newValue, setDatashachitry);
+            // fetchshachitr(newValue, setDatashachitry);
         } else {
             setDatashachitry([]);
         }
@@ -232,31 +245,31 @@ const Shanchitre = () => {
     const shachitryhandleChange = (newValue) => {
         setSortNumberId(newValue);
     };
-    const fetchshachitr = (sortNumberId, callback) => {
-        if (timeout) {
-            clearTimeout(timeout);
-            timeout = null;
-        }
-        currentValue = sortNumberId;
-        const fake = () => {
-            const payloadData = {
-                sortNumber: sortNumberId,
-                search: currentValue
-            };
-            shanchitrydropdwonGetByApi(payloadData).then((res) => {
-                console.log('res--', res);
-                setShanchitrysortNodata(res.data);
-                if (currentValue === value) {
-                    const Cdata = res.data.map((item) => ({
-                        value: item.id,
-                        text: item.sortNumber
-                    }));
-                    callback(Cdata);
-                }
-            });
-        };
-        timeout = setTimeout(fake, 300);
-    };
+    // const fetchshachitr = (sortNumberId, callback) => {
+    //     if (timeout) {
+    //         clearTimeout(timeout);
+    //         timeout = null;
+    //     }
+    //     currentValue = sortNumberId;
+    //     const fake = () => {
+    //         const payloadData = {
+    //             sortNumber: sortNumberId,
+    //             search: currentValue
+    //         };
+    //         shanchitrydropdwonGetByApi(payloadData).then((res) => {
+    //             console.log('res--', res);
+    //             setShanchitrysortNodata(res.data);
+    //             if (currentValue === value) {
+    //                 const Cdata = res.data.map((item) => ({
+    //                     value: item.id,
+    //                     text: item.sortNumber
+    //                 }));
+    //                 callback(Cdata);
+    //             }
+    //         });
+    //     };
+    //     timeout = setTimeout(fake, 300);
+    // };
     // <================================== End Api call ==========================================>
     return (
         <>
@@ -407,7 +420,7 @@ const Shanchitre = () => {
                                         defaultActiveFirstOption={false}
                                         showArrow={true}
                                         filterOption={false}
-                                        onSearch={shachitryhandleSearch}
+                                        // onSearch={shachitryhandleSearch}
                                         onChange={shachitryhandleChange}
                                         notFoundContent={null}
                                         options={(shanchitrysortNodata || []).map((d) => ({
@@ -424,6 +437,7 @@ const Shanchitre = () => {
                                 <Form.Item
                                     // label="Description"
                                     name="Checkbox"
+                                    checked={checkboxxx}
                                     value={1}
                                     // rules={[
                                     //     {
@@ -432,8 +446,7 @@ const Shanchitre = () => {
                                     //     }
                                     // ]}
                                 >
-                                    {/* <Checkbox onChange={onChange} value={1}> */}
-                                    <Checkbox name="Checkbox" value={1}>
+                                    <Checkbox onChange={onChange} value={1} checked={checkboxxx}>
                                         <b>Verify</b>
                                     </Checkbox>
                                 </Form.Item>

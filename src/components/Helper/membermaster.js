@@ -16,3 +16,7 @@ export const memberdetailsUpdateByApi = async (payloadData) => {
     let res = await axiosPrivate.patch('/member_masters/' + payloadData.id, payloadData);
     return res.data;
 };
+export const MembermasterdropdownGetByApi = async (payloadData) => {
+    let res = await axiosPrivate.post('/member_masters/MembermasterdropdownGetByApi', payloadData);
+    return res.data;
+};

@@ -11,10 +11,9 @@ import { CSVLink } from 'react-csv';
 // import Printtable from '../Printtable';
 import { Input } from 'antd';
 import moment from 'moment';
-import { debounce } from 'debounce';
 import dayjs from 'dayjs';
 import { useReactToPrint } from 'react-to-print';
-import './mainbatmayatable.css';
+import './photogallaryTable.css';
 import { exportPDFData } from '../../utility/Common';
 import {
     faFileExcel,
@@ -25,7 +24,6 @@ import {
     faPenToSquare,
     faXmark,
     faEye,
-    faPen,
     faTrash
 } from '@fortawesome/free-solid-svg-icons';
 const { Search } = Input;
@@ -35,21 +33,19 @@ const dateFormat = 'DD-MM-YYYY';
 import MainCard from 'components/MainCard';
 import Button from 'themes/overrides/Button';
 import { filter } from 'lodash';
-// import { detailsExcellsheetByApi } from '../../components/Helper/details';
-import { bannertablesearchByApi } from 'components/Helper/bannerdetails';
-import { batmayatablesearchByApi } from 'components/Helper/batmaya';
+import { PhotogallarytablesearchByApi } from 'components/Helper/photogallary';
 
 const onSearch = (value) => console.log(value);
 
-const MainbatmayaTable = () => {
+const PhotoGallaryTable = () => {
     // const conponentPDF = useRef();
     const [placement, SetPlacement] = useState('bottomRight');
-    const [BrandtableData, setBrandtableData] = useState([]);
-    const [batmayaoffset, setbatmayaoffset] = useState([]);
-    // const [modifyExcellsheetdata, setModifyExcellsheetdata] = useState([]);
+    const [filtersearch, setFilterSearch] = useState('');
+    const [photoGallarytabledata, setPhotoGallarytabledata] = useState([]);
+    const [printoffset, setPrintoffset] = useState([]);
+    const [photoGallaryExcellsheetdata, setphotoGallaryExcellsheetdata] = useState([]);
     const [parpage, setParpage] = useState(10);
     const [loading, setloading] = useState(false);
-    const URLidimage = 'http://localhost:3000/api/fileuploads/batmaya/download/';
     const navigate = useNavigate();
     const [tableParams, setTableParams] = useState({
         pagination: {
@@ -58,8 +54,8 @@ const MainbatmayaTable = () => {
             pageSize: 10
         }
     });
-    let offset = batmayaoffset;
-    // let id = BrandtableData;
+    let offset = printoffset;
+    // let id = photoGallarytabledata;
     console.log('idoffset', offset);
     // console.log('id', id);
     const columns = [
@@ -76,7 +72,7 @@ const MainbatmayaTable = () => {
             render: (_, record) => (
                 <Space size="middle">
                     {/* <button className="m-1 btn btn-outline-withe btn-sm h6" size="small"> */}
-                    <Link to={`/Mainbatmaya/${record.id}`}>
+                    <Link to={`/PhotoGallary/${record.id}`}>
                         <FontAwesomeIcon icon={faEye} className="m-1 h5  icon text-center " style={{ color: '#005ca1' }} />
                     </Link>
                     {/* <FontAwesomeIcon icon={faXmark} className="m-1 h5  icon text-center h6" style={{ color: '#005ca1' }} /> */}
@@ -93,31 +89,15 @@ const MainbatmayaTable = () => {
             key: 'id',
             render: (id) => <a>{id}</a>
         },
-        // {
-        //     title: 'Titlebatmya Lable',
-        //     dataIndex: 'titlebatmyalable',
-        //     key: 'titlebatmyalable'
-        // },
-
         {
-            title: 'Batmya lable',
-            dataIndex: 'batmyalable',
-            key: 'batmyalable'
+            title: 'Galllary Text',
+            dataIndex: 'galllarytext',
+            key: 'galllarytext'
         },
         {
-            title: 'Paper Name',
-            dataIndex: 'papername',
-            key: 'papername'
-        },
-        {
-            title: 'Image Batmaya',
-            dataIndex: 'imagebatmaya',
-            key: 'imagebatmaya'
-        },
-        {
-            title: 'Batmya Date',
-            dataIndex: 'batmyadate',
-            key: 'batmyadate'
+            title: 'Image',
+            dataIndex: 'photogallaryImage',
+            key: 'photogallaryImage'
         },
         {
             title: 'Actions',
@@ -133,17 +113,16 @@ const MainbatmayaTable = () => {
     const onSearch = (e) => {
         console.log(e.target.value);
         const multiplesearchinput = e.target.value;
-        modifybyapidun(0, multiplesearchinput);
+        petientbyapi(0, multiplesearchinput);
     };
-    const debouncedInputChange = debounce(onSearch, 1000);
     // <================================== End search filter function ==========================================>
 
     const handlePDF = () => {
         try {
-            const title = 'Batmaya List';
+            const title = 'Profession List';
             // title: 'Age',
-            const headers = [['Batmyalable', 'Papername', 'Batmya date']];
-            const tdata = BrandtableData.map((elt) => [elt.batmyalable, elt.papername, elt.batmyadate]);
+            const headers = [['Id', 'Profession Name']];
+            const tdata = photoGallarytabledata.map((elt) => [elt.id, elt.professionName]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);
@@ -153,7 +132,7 @@ const MainbatmayaTable = () => {
     // <================================== Api call ==========================================>
 
     useEffect(() => {
-        modifybyapidun();
+        petientbyapi();
         // excellfunction();
     }, []);
 
@@ -164,24 +143,22 @@ const MainbatmayaTable = () => {
     //     detailsExcellsheetByApi(payloadData).then(
     //         (res) => {
     //             console.log('resexcell', res);
-    //             setCasepaperExcellsheetdata(res.data);
+    //             setphotoGallaryExcellsheetdata(res.data);
     //         },
     //         (err) => {
     //             console.log('err', err);
     //         }
     //     );
     // };
-    const modifybyapidun = (offset = 0, multiplesearchinput = '', current = null) => {
+    const petientbyapi = (offset = 0, multiplesearchinput = '', current = null) => {
         setloading(true);
-        setbatmayaoffset(offset);
+        setPrintoffset(offset);
         let payloadData = {
             offset: offset,
             limit: 10,
-            search: multiplesearchinput,
-            papername: multiplesearchinput,
-            batmyalable: multiplesearchinput
+            search: multiplesearchinput
         };
-        batmayatablesearchByApi(payloadData).then(
+        PhotogallarytablesearchByApi(payloadData).then(
             async (res) => {
                 console.log('res=>', res);
                 // let tableParmsSample = tableParams;
@@ -206,7 +183,7 @@ const MainbatmayaTable = () => {
                     });
                 }
 
-                setBrandtableData(res.data.data);
+                setPhotoGallarytabledata(res.data.data);
                 setloading(false);
             },
             (err) => {
@@ -239,7 +216,7 @@ const MainbatmayaTable = () => {
     //                                 return e;
     //                             }
     //                         });
-    //                         setBrandtableData(newData);
+    //                         setPhotoGallarytabledata(newData);
     //                         console.log('newData', newData);
     //                     });
     //                 }
@@ -267,8 +244,7 @@ const MainbatmayaTable = () => {
         });
         let offset = (pagination.current - 1) * parpage;
         console.log('offset', offset);
-        modifybyapidun(offset, '', pagination.current);
-        // modifybyapidun(offset);
+        petientbyapi(offset, '', pagination.current);
     };
     // <================================== End Table onChange function handleTableChange  ==========================================>
 
@@ -276,18 +252,18 @@ const MainbatmayaTable = () => {
     return (
         <>
             <Typography variant="h5" className="mx-2">
-                <small className="text-black-50">Home</small> {'/'} <b>बातम्या आणि लेख मॅनेज टेबल</b>
+                <small className="text-black-50">Home</small> {'/'} <b>फोटो गॅलरी मॅनेज टेबल</b>
             </Typography>
             <br></br>
             <MainCard>
                 <Grid container spacing={2} columnSpacing={{ sm: 1, md: 3 }}>
                     <Grid item lg={6} xs={6} sm={12} md={6}>
                         <span className="main-title bg-white text-dark ">
-                            <b className="brandtaitletext">बातम्या मॅनेज टेबल</b>
+                            <b className="brandtaitletext">फोटो गॅलरी मॅनेज टेबल</b>
                         </span>
                     </Grid>
                     <Grid item lg={6} xs={12} sm={12} md={6} className="text-end">
-                        <Link to="/Mainbatmaya">
+                        <Link to="/PhotoGallary">
                             <button className="btn btn-primary  mx-1 m-1 btn-sm" type="primary">
                                 <span className="plusicon">+</span> Add New
                             </button>
@@ -300,14 +276,13 @@ const MainbatmayaTable = () => {
                             </button>
                         </Link>
                         <button className="btn btuniconbord mx-1 m-1 btn-sm" type="button">
-                            {/* <CSVLink data={CasepaperExcellsheetdata} id="excel" className="text-decoration-none text-dark"> */}
-                            <CSVLink data={''} id="excel" className="text-decoration-none text-dark">
+                            <CSVLink data={photoGallaryExcellsheetdata} id="excel" className="text-decoration-none text-dark">
                                 <FontAwesomeIcon icon={faFileExcel} className="mx-1 " />
                                 EXCELL
                             </CSVLink>
                         </button>
                         <button className="btn btuniconbord mx-1 m-1 btn-sm" type="button">
-                            {/* <CSVLink data={CasepaperExcellsheetdata} id="excel" className="text-decoration-none text-white"> */}
+                            {/* <CSVLink data={photoGallaryExcellsheetdata} id="excel" className="text-decoration-none text-white"> */}
                             {/* <FontAwesomeIcon icon={faFileExcel} className="mx-1" /> */}
                             CSV
                             {/* </CSVLink> */}
@@ -332,8 +307,7 @@ const MainbatmayaTable = () => {
                             }
                             // placeholder="search"
                             className="m-1 setachbraninput"
-                            // onChange={onSearch}
-                            onChange={debouncedInputChange}
+                            onChange={onSearch}
                             style={{
                                 width: 280
                                 // width: 229px;
@@ -351,7 +325,7 @@ const MainbatmayaTable = () => {
                                 <Table
                                     className="tableheaderbg"
                                     columns={columns}
-                                    dataSource={BrandtableData}
+                                    dataSource={photoGallarytabledata}
                                     size="small"
                                     id="excel"
                                     // bordered
@@ -370,4 +344,4 @@ const MainbatmayaTable = () => {
     );
 };
 
-export default MainbatmayaTable;
+export default PhotoGallaryTable;

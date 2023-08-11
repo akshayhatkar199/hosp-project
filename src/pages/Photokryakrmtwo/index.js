@@ -7,14 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Space, Table, Tag, DatePicker } from 'antd';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
+import { debounce } from 'debounce';
 import { CSVLink } from 'react-csv';
 // import Printtable from '../Printtable';
 import { Input } from 'antd';
 import moment from 'moment';
-import { debounce } from 'debounce';
 import dayjs from 'dayjs';
 import { useReactToPrint } from 'react-to-print';
-import './mainbatmayatable.css';
+import './photokryakrm.css';
 import { exportPDFData } from '../../utility/Common';
 import {
     faFileExcel,
@@ -35,21 +35,18 @@ const dateFormat = 'DD-MM-YYYY';
 import MainCard from 'components/MainCard';
 import Button from 'themes/overrides/Button';
 import { filter } from 'lodash';
-// import { detailsExcellsheetByApi } from '../../components/Helper/details';
-import { bannertablesearchByApi } from 'components/Helper/bannerdetails';
-import { batmayatablesearchByApi } from 'components/Helper/batmaya';
+import { imagekaryakramtwostablesearchByApi } from 'components/Helper/photokryakrm';
 
 const onSearch = (value) => console.log(value);
 
-const MainbatmayaTable = () => {
+const Photokryakrmtwo = () => {
     // const conponentPDF = useRef();
     const [placement, SetPlacement] = useState('bottomRight');
-    const [BrandtableData, setBrandtableData] = useState([]);
-    const [batmayaoffset, setbatmayaoffset] = useState([]);
+    const [photokryakrmtwoData, setPhotokryakrmtwoData] = useState([]);
+    const [modifyoffset, setModifyoffset] = useState([]);
     // const [modifyExcellsheetdata, setModifyExcellsheetdata] = useState([]);
     const [parpage, setParpage] = useState(10);
     const [loading, setloading] = useState(false);
-    const URLidimage = 'http://localhost:3000/api/fileuploads/batmaya/download/';
     const navigate = useNavigate();
     const [tableParams, setTableParams] = useState({
         pagination: {
@@ -58,8 +55,8 @@ const MainbatmayaTable = () => {
             pageSize: 10
         }
     });
-    let offset = batmayaoffset;
-    // let id = BrandtableData;
+    let offset = modifyoffset;
+    // let id = photokryakrmtwoData;
     console.log('idoffset', offset);
     // console.log('id', id);
     const columns = [
@@ -69,63 +66,48 @@ const MainbatmayaTable = () => {
         //     key: 'id',
         //     render: (id) => <a>{id}</a>
         // },
-        {
-            title: 'Sr.No',
-            key: 'Action',
-            width: '6%',
-            render: (_, record) => (
-                <Space size="middle">
-                    {/* <button className="m-1 btn btn-outline-withe btn-sm h6" size="small"> */}
-                    <Link to={`/Mainbatmaya/${record.id}`}>
-                        <FontAwesomeIcon icon={faEye} className="m-1 h5  icon text-center " style={{ color: '#005ca1' }} />
-                    </Link>
-                    {/* <FontAwesomeIcon icon={faXmark} className="m-1 h5  icon text-center h6" style={{ color: '#005ca1' }} /> */}
-                    {/* </button> */}
-                    {/* <button className="m-1 btn btn-outline-withe btn-sm h6" size="small"> */}
-                    {/* <FontAwesomeIcon icon={faXmark} className="m-1 h5  iconcross text-center h6" style={{ color: '#005ca1' }} /> */}
-                    {/* </button> */}
-                </Space>
-            )
-        },
+        // {
+        //     title: 'Sr.No',
+        //     key: 'Action',
+        //     width: '6%',
+        //     render: (_, record) => (
+        //         <Space size="middle">
+        //             {/* <button className="m-1 btn btn-outline-withe btn-sm h6" size="small"> */}
+        //             {/* <Link to={`/Shanchitre/${record.id}`}>
+        //                 <FontAwesomeIcon icon={faEye} className="m-1 h5  icon text-center " style={{ color: '#005ca1' }} />
+        //             </Link> */}
+        //             {/* <FontAwesomeIcon icon={faXmark} className="m-1 h5  icon text-center h6" style={{ color: '#005ca1' }} /> */}
+        //             {/* </button> */}
+        //             {/* <button className="m-1 btn btn-outline-withe btn-sm h6" size="small"> */}
+        //             {/* <FontAwesomeIcon icon={faXmark} className="m-1 h5  iconcross text-center h6" style={{ color: '#005ca1' }} /> */}
+        //             {/* </button> */}
+        //             {/* <Link to={`/Banner/${record.id}`}> */}
+        //             {/* <FontAwesomeIcon icon={faPen} className="m-1 h5   text-center h6" style={{ color: 'black' }} /> */}
+        //             {/* </Link> */}
+        //         </Space>
+        //     )
+        // },
         {
             title: 'View',
             dataIndex: 'id',
             key: 'id',
+            width: '6%',
             render: (id) => <a>{id}</a>
         },
-        // {
-        //     title: 'Titlebatmya Lable',
-        //     dataIndex: 'titlebatmyalable',
-        //     key: 'titlebatmyalable'
-        // },
-
         {
-            title: 'Batmya lable',
-            dataIndex: 'batmyalable',
-            key: 'batmyalable'
+            title: 'Karyakram Title',
+            dataIndex: 'karyakramTitle1',
+            key: 'karyakramTitle1'
         },
         {
-            title: 'Paper Name',
-            dataIndex: 'papername',
-            key: 'papername'
+            title: 'Image',
+            dataIndex: 'imagetokary',
+            key: 'imagetokary'
         },
         {
-            title: 'Image Batmaya',
-            dataIndex: 'imagebatmaya',
-            key: 'imagebatmaya'
-        },
-        {
-            title: 'Batmya Date',
-            dataIndex: 'batmyadate',
-            key: 'batmyadate'
-        },
-        {
-            title: 'Actions',
-            dataIndex: 'Checkbox',
-            key: 'Checkbox',
-            render: (Checkbox) => {
-                return <p>{Checkbox == 1 ? <Tag color="green">Verify</Tag> : <Tag color="volcano">UnVerify</Tag>}</p>;
-            }
+            title: 'karyakramText1',
+            dataIndex: 'karyakramText1',
+            key: 'karyakramText1'
         }
     ];
 
@@ -133,17 +115,17 @@ const MainbatmayaTable = () => {
     const onSearch = (e) => {
         console.log(e.target.value);
         const multiplesearchinput = e.target.value;
-        modifybyapidun(0, multiplesearchinput);
+        ShanchitrApifun(0, multiplesearchinput);
     };
     const debouncedInputChange = debounce(onSearch, 1000);
     // <================================== End search filter function ==========================================>
 
     const handlePDF = () => {
         try {
-            const title = 'Batmaya List';
+            const title = 'Shanchitr List';
             // title: 'Age',
-            const headers = [['Batmyalable', 'Papername', 'Batmya date']];
-            const tdata = BrandtableData.map((elt) => [elt.batmyalable, elt.papername, elt.batmyadate]);
+            const headers = [['Text Label', 'Date']];
+            const tdata = photokryakrmtwoData.map((elt) => [elt.textlabel, elt.shandate]);
             exportPDFData(title, headers, tdata);
         } catch (error) {
             console.log('Error : ' + error);
@@ -153,7 +135,7 @@ const MainbatmayaTable = () => {
     // <================================== Api call ==========================================>
 
     useEffect(() => {
-        modifybyapidun();
+        ShanchitrApifun();
         // excellfunction();
     }, []);
 
@@ -171,17 +153,15 @@ const MainbatmayaTable = () => {
     //         }
     //     );
     // };
-    const modifybyapidun = (offset = 0, multiplesearchinput = '', current = null) => {
+    const ShanchitrApifun = (offset = 0, multiplesearchinput = '', current = null) => {
         setloading(true);
-        setbatmayaoffset(offset);
+        setModifyoffset(offset);
         let payloadData = {
             offset: offset,
             limit: 10,
-            search: multiplesearchinput,
-            papername: multiplesearchinput,
-            batmyalable: multiplesearchinput
+            search: multiplesearchinput
         };
-        batmayatablesearchByApi(payloadData).then(
+        imagekaryakramtwostablesearchByApi(payloadData).then(
             async (res) => {
                 console.log('res=>', res);
                 // let tableParmsSample = tableParams;
@@ -206,7 +186,7 @@ const MainbatmayaTable = () => {
                     });
                 }
 
-                setBrandtableData(res.data.data);
+                setPhotokryakrmtwoData(res.data.data);
                 setloading(false);
             },
             (err) => {
@@ -239,7 +219,7 @@ const MainbatmayaTable = () => {
     //                                 return e;
     //                             }
     //                         });
-    //                         setBrandtableData(newData);
+    //                         setPhotokryakrmtwoData(newData);
     //                         console.log('newData', newData);
     //                     });
     //                 }
@@ -267,8 +247,8 @@ const MainbatmayaTable = () => {
         });
         let offset = (pagination.current - 1) * parpage;
         console.log('offset', offset);
-        modifybyapidun(offset, '', pagination.current);
-        // modifybyapidun(offset);
+        ShanchitrApifun(offset, '', pagination.current);
+        // ShanchitrApifun(offset);
     };
     // <================================== End Table onChange function handleTableChange  ==========================================>
 
@@ -276,22 +256,22 @@ const MainbatmayaTable = () => {
     return (
         <>
             <Typography variant="h5" className="mx-2">
-                <small className="text-black-50">Home</small> {'/'} <b>बातम्या आणि लेख मॅनेज टेबल</b>
+                <small className="text-black-50">Home</small> {'/'} <b>कार्यक्रम मॅनेजटेबल</b>
             </Typography>
             <br></br>
             <MainCard>
                 <Grid container spacing={2} columnSpacing={{ sm: 1, md: 3 }}>
                     <Grid item lg={6} xs={6} sm={12} md={6}>
                         <span className="main-title bg-white text-dark ">
-                            <b className="brandtaitletext">बातम्या मॅनेज टेबल</b>
+                            <b className="brandtaitletext">कार्यक्रम मॅनेज टेबल</b>
                         </span>
                     </Grid>
                     <Grid item lg={6} xs={12} sm={12} md={6} className="text-end">
-                        <Link to="/Mainbatmaya">
+                        {/* <Link to="/Shanchitre">
                             <button className="btn btn-primary  mx-1 m-1 btn-sm" type="primary">
                                 <span className="plusicon">+</span> Add New
                             </button>
-                        </Link>
+                        </Link> */}
                     </Grid>
                     <Grid item lg={6} xs={12} sm={12} md={6} className="text-start">
                         <Link to={'/Casepaper'}>
@@ -351,7 +331,7 @@ const MainbatmayaTable = () => {
                                 <Table
                                     className="tableheaderbg"
                                     columns={columns}
-                                    dataSource={BrandtableData}
+                                    dataSource={photokryakrmtwoData}
                                     size="small"
                                     id="excel"
                                     // bordered
@@ -370,4 +350,4 @@ const MainbatmayaTable = () => {
     );
 };
 
-export default MainbatmayaTable;
+export default Photokryakrmtwo;

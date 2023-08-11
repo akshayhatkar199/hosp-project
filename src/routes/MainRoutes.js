@@ -38,6 +38,14 @@ const Unittable = Loadable(lazy(() => import('pages/Unittable/index')));
 const FamilyCreate = Loadable(lazy(() => import('pages/Familyform/index')));
 const Familytable = Loadable(lazy(() => import('pages/Familytable/index')));
 
+const Karyakram = Loadable(lazy(() => import('pages/Karyakram/index')));
+const KaryakramTable = Loadable(lazy(() => import('pages/KaryakramTable/index')));
+
+const Photokryakrmtwo = Loadable(lazy(() => import('pages/Photokryakrmtwo/index')));
+
+const PhotoGallary = Loadable(lazy(() => import('pages/PhotoGallary/index')));
+const PhotoGallaryTable = Loadable(lazy(() => import('pages/PhotoGallaryTable/index')));
+
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
 
@@ -192,6 +200,34 @@ const MainRoutes = {
         {
             path: 'Familytable',
             element: <Familytable />
+        },
+        {
+            path: 'Karyakram',
+            element: <Karyakram />
+        },
+        {
+            path: 'Karyakram/:id',
+            element: <Karyakram />
+        },
+        {
+            path: 'KaryakramTable',
+            element: <KaryakramTable />
+        },
+        {
+            path: 'Photokryakrmtwo',
+            element: <Photokryakrmtwo />
+        },
+        {
+            path: 'PhotoGallary',
+            element: <PhotoGallary />
+        },
+        {
+            path: 'PhotoGallary/:id',
+            element: <PhotoGallary />
+        },
+        {
+            path: 'PhotoGallaryTable',
+            element: <PhotoGallaryTable />
         },
 
         // {

@@ -503,7 +503,7 @@ const Banner = () => {
                                     //     }
                                     // ]}
                                 >
-                                    <Checkbox name="Checkbox" onChange={onChange} checked={checkboxxx}>
+                                    <Checkbox name="Checkbox" onChange={onChange} value={1} checked={checkboxxx}>
                                         {/* <Checkbox name="Checkbox" value={1}> */}
                                         <b>Verify</b>
                                     </Checkbox>

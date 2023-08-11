@@ -14,41 +14,54 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faCircleCheck, faCaretLeft, faCaretRight, faFloppyDisk, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Upload, Button, Icon, Form, Modal, Checkbox } from 'antd';
 import { TextareaAutosize } from '@mui/base';
+import { DateTime } from 'luxon';
 import swal from 'sweetalert';
 import { UploadOutlined, QuestionOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import dayjs from 'dayjs';
-import './mainbatmaya.css';
+import './karyakram.css';
 import {
     batmayadetailsGetidByApi,
     batmayadetailsUpdateByApi,
     batmyafromsubmitByApi,
     uploadbatmayaImgbannerApi
 } from 'components/Helper/batmaya';
+import {
+    karyakramdetailsGetidByApi,
+    karyakramdetailsUpdateByApi,
+    karyakramfromsubmitByApi,
+    uploadImgAgamikaryakramApi,
+    uploadImgkaryakramApi
+} from 'components/Helper/karyakram';
 let timeout;
 let currentValue;
 const { RangePicker } = DatePicker;
 // const dateFormat = 'YYYY-MM-DD';
 const dateFormat = 'DD-MM-YYYY';
+const Time = 'HH:mm';
 
-const Mainbatmaya = () => {
+const Karyakram = () => {
     const [loading, setloading] = useState(false);
     const [baneerloding, setBaneerloding] = useState(false);
-    const [batmayadata, setbatmayadata] = useState(null);
+    const [karyakramdata, setKaryakramdata] = useState(null);
     const [checkboxxx, setCheckbox] = useState(false);
+    const [selectedTime, setSelectedTime] = useState(DateTime.local());
     const [placement, SetPlacement] = useState('bottomRight');
     let { id } = useParams();
     const [form] = Form.useForm();
     const navigate = useNavigate();
     const [fileList, setFileList] = useState([]);
+    const [fileAgamiList, setFileAgamiList] = useState([]);
     const [imgeidfile, setImgeidfile] = useState([]);
     // const [imgeidset, setImgeidset] = useState([]);
     const [imgError, setImageError] = useState('');
+    const [imgAgamiError, setImageAgamiError] = useState('');
     // const [bnnerPhoto, setBnnerPhoto] = useState();
     // const [preview, setPreview] = useState();
     const { TextArea } = Input;
-    // console.log('batmayadata', batmayadata);
-    const URLidimage = 'http://localhost:3000/api/fileuploads/batmaya/download/';
+    // console.log('karyakramdata', karyakramdata);
+    const URLidimage = 'http://localhost:3000/api/fileuploads/karyakramimageFolder/download/';
+
     const props = {
         listType: 'picture',
         defaultFileList: [...fileList],
@@ -85,22 +98,24 @@ const Mainbatmaya = () => {
         // maxCount: 1,
     };
 
+    // <=====================>
+
     useEffect(() => {
         if (typeof id !== 'undefined') {
             getbannertailbyid();
         } else {
-            form.setFieldValue('batmyadate', dayjs(new Date()));
+            form.setFieldValue('AgamikaryakramDate', dayjs(new Date()));
         }
     }, [id]);
     const getbannertailbyid = () => {
         setBaneerloding(true);
-        batmayadetailsGetidByApi(id)
+        karyakramdetailsGetidByApi(id)
             .then(
                 async (res) => {
                     console.log(' success');
                     let response = res;
-                    response.batmyadate = dayjs(response.batmyadate, dateFormat); // moment(new Date(response.REGI_DATE)).format('YYYY-MM-DD'); // moment();
-                    setbatmayadata(response);
+                    response.AgamikaryakramDate = dayjs(response.AgamikaryakramDate, dateFormat); // moment(new Date(response.REGI_DATE)).format('YYYY-MM-DD'); // moment();
+                    setKaryakramdata(response);
                     setCheckbox(response.Checkbox);
                     console.log('response', response);
                     form.resetFields();
@@ -115,7 +130,7 @@ const Mainbatmaya = () => {
             )
             .catch();
     };
-    const onFinishbannerslider = async (values) => {
+    const onFinishkaryakram = async (values) => {
         console.log('----------', values);
         setloading(true);
         console.log('Success:', values);
@@ -125,7 +140,7 @@ const Mainbatmaya = () => {
             if (values.image) {
                 formData.append('files', values.image.file);
             }
-            uploadbatmayaImgbannerApi(formData, 'batmaya')
+            uploadImgkaryakramApi(formData, 'karyakramimageFolder')
                 .then(
                     async (res) => {
                         let filename = '';
@@ -134,16 +149,16 @@ const Mainbatmaya = () => {
                         }
                         let payloadData = {
                             ...values,
-                            imagebatmaya: filename,
+                            karyakramImage: filename,
                             Checkbox: checkboxxx,
-                            batmyadate: moment(new Date(values.batmyadate)).format('DD-MM-YYYY')
+                            AgamikaryakramDate: moment(new Date(values.AgamikaryakramDate)).format('DD-MM-YYYY')
                         };
                         console.log('payloaddata', payloadData);
-                        batmyafromsubmitByApi(payloadData).then(
+                        karyakramfromsubmitByApi(payloadData).then(
                             (res) => {
                                 console.log('resbanner', res);
                                 swal('success', 'success fully', 'success');
-                                navigate('/MainbatmayaTable');
+                                navigate('/KaryakramTable');
                                 setloading(false);
                             },
                             (err) => {
@@ -160,13 +175,14 @@ const Mainbatmaya = () => {
                 )
                 .catch();
         } else {
-            var filename = batmayadata.imagebatmaya;
+            var filename = karyakramdata.karyakramImage;
+
             // setBnnerPhoto(filename);
             const formData = new FormData();
             if (values.image && values.image.file) {
                 formData.append('files', values.image.file);
                 console.log('plase apload imag');
-                await uploadbatmayaImgbannerApi(formData, 'batmaya').then(async (res) => {
+                await uploadImgkaryakramApi(formData, 'karyakramimageFolder').then(async (res) => {
                     if (res.result && res.result.files && res.result.files.files.length > 0) {
                         filename = res.result.files.files[0].name;
                     }
@@ -178,24 +194,24 @@ const Mainbatmaya = () => {
             let payloadData = {
                 ...values,
                 id: id,
-                imagebatmaya: filename,
+                karyakramImage: filename,
                 Checkbox: checkboxxx,
-                batmyadate: moment(new Date(values.batmyadate)).format('DD-MM-YYYY')
+                AgamikaryakramDate: moment(new Date(values.AgamikaryakramDate)).format('DD-MM-YYYY')
             };
             setloading(true);
-            await batmayadetailsUpdateByApi(payloadData)
+            await karyakramdetailsUpdateByApi(payloadData)
                 .then(
                     async (res) => {
                         console.log('res', res);
                         console.log(' success');
-                        swal('batmaya Update', 'Update success Fully', 'success');
-                        navigate('/MainbatmayaTable');
+                        swal('Karyakram Update', 'Update success Fully', 'success');
+                        navigate('/KaryakramTable');
                         setloading(false);
                     },
                     (err) => {
                         console.log('error', err);
                         setloading(false);
-                        swal('batmaya', 'Not updated', 'error');
+                        swal('Karyakram', 'Not updated', 'error');
                     }
                 )
                 .catch();
@@ -203,7 +219,7 @@ const Mainbatmaya = () => {
     };
     // };
 
-    const onFinishFailedbannerslider = (value) => {
+    const onFinishFailedkaryakram = (value) => {
         console.log('value', value);
     };
     const onChange = (e) => {
@@ -220,6 +236,11 @@ const Mainbatmaya = () => {
         SetPlacement(e.target.value);
     };
     const validationnewdate = new Date();
+    const handleTimeChange = (event) => {
+        const inputTime = event.target.value;
+        const newTime = DateTime.fromFormat(inputTime, 'hh:mm A');
+        setSelectedTime(newTime);
+    };
     // <================================== End Api call ==========================================>
     return (
         <>
@@ -227,8 +248,8 @@ const Mainbatmaya = () => {
                 <small className="text-black-50" style={{ fontFamily: 'Poppins' }}>
                     Home
                 </small>
-                {/* {'/'} <b>Mainbatmaya Manage </b> */}
-                {'/'} <b>बातम्या आणि लेख मॅनेज</b>
+                {/* {'/'} <b>Karyakram Manage </b> */}
+                {'/'} <b>कार्यक्रम मॅनेज</b>
             </Typography>
             <br></br>
             <Card className="driver-create-card ">
@@ -243,89 +264,29 @@ const Mainbatmaya = () => {
                 <div>
                     <h5>
                         <span className=" text-start">
-                            {/* <b>Mainbatmaya Manage</b> */}
-                            <b>बातम्या आणि लेख मॅनेज</b>
+                            {/* <b>Karyakram Manage</b> */}
+                            <b>कार्यक्रम मॅनेज</b>
                         </span>
                     </h5>
                 </div>
                 <hr className="MuiDivider-root MuiDivider-fullWidth css-1wnin34-MuiDivider-root"></hr>
                 <Form
                     name="basic"
-                    initialValues={batmayadata}
+                    initialValues={karyakramdata}
                     // layout="vertical"
                     // labelCol={{ span: 22 }}
                     // wrapperCol={{ span: 22 }}
                     form={form}
-                    onFinish={onFinishbannerslider}
-                    onFinishFailed={onFinishFailedbannerslider}
+                    onFinish={onFinishkaryakram}
+                    onFinishFailed={onFinishFailedkaryakram}
                     autoComplete="off"
                 >
                     <Typography variant="body2">
                         <Grid container spacing={2}>
-                            {/* <Grid item xs={12} lg={4} sm={12} xl={4}>
-                                <Form.Item
-                                    // label="Description"
-                                    name="titlebatmyalable"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please titlebatmya lable.'
-                                        }
-                                    ]}
-                                >
-                                    <Input
-                                        name=" titlebatmyalable"
-                                        className="datepicinp textfont"
-                                        placeholder={'Enter titlebatmya lable'}
-                                    />
-                                </Form.Item>
-                                <span className="textlabel">
-                                    Titlebatmya Lable<span className="text-danger">*</span>{' '}
-                                </span>
-                            </Grid> */}
-                            <Grid item xs={12} lg={4} sm={12} xl={4}>
-                                <Form.Item
-                                    // label="Description"
-                                    name="batmyalable"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please batmya lable.'
-                                        }
-                                    ]}
-                                >
-                                    <TextArea
-                                        row={2}
-                                        name="batmyalable"
-                                        className="datepicinp textfont"
-                                        placeholder={'Enter batmya lable'}
-                                    />
-                                </Form.Item>
-                                <span className="textlabelbatmaya">
-                                    Batmya Lable<span className="text-danger">*</span>
-                                </span>
-                            </Grid>
-                            <Grid item xs={12} lg={4} sm={12} xl={4}>
-                                <Form.Item
-                                    // label="Description"
-                                    name="papername"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please paper name.'
-                                        }
-                                    ]}
-                                >
-                                    <Input name="papername" className="datepicinp textfont" placeholder={'Enter paper name'} />
-                                </Form.Item>
-                                <span className="textlabel">
-                                    Paper Name<span className="text-danger">*</span>{' '}
-                                </span>
-                            </Grid>
                             <Grid item xs={12} lg={2} sm={12} xl={2}>
                                 {id ? (
                                     <Form.Item name="image">
-                                        <Upload {...props} maxCount={1}>
+                                        <Upload {...props} maxCount={1} className="w-100">
                                             <Button className="buttonimge" icon={<UploadOutlined />}>
                                                 Select File
                                             </Button>
@@ -337,7 +298,7 @@ const Mainbatmaya = () => {
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Please Enter image batmaya.'
+                                                message: 'Please Enter image .'
                                             }
                                         ]}
                                     >
@@ -350,14 +311,56 @@ const Mainbatmaya = () => {
                                 )}
                                 <lable className="text-danger">{imgError}</lable>
                                 <span className="textimagelabel">
-                                    image<span className="text-danger">*</span>{' '}
+                                    karyakram image<span className="text-danger">*</span>{' '}
                                 </span>
                             </Grid>
 
+                            <Grid item xs={12} lg={4} sm={12} xl={4}>
+                                <Form.Item
+                                    // label="Description"
+                                    name="AgamikaryakramTitle"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please Agami Title.'
+                                        }
+                                    ]}
+                                >
+                                    <Input
+                                        name=" AgamikaryakramTitle"
+                                        className="datepicinp textfont"
+                                        placeholder={'Enter Agamikaryakram Title'}
+                                    />
+                                </Form.Item>
+                                <span className="textlabel">
+                                    Agamikaryakram Title<span className="text-danger">*</span>{' '}
+                                </span>
+                            </Grid>
+                            <Grid item xs={12} lg={4} sm={12} xl={4}>
+                                <Form.Item
+                                    // label="Description"
+                                    name="AgamikaryakramAdrees"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please Agamikaryakram Adrees.'
+                                        }
+                                    ]}
+                                >
+                                    <Input
+                                        name="AgamikaryakramAdrees"
+                                        className="datepicinp textfont"
+                                        placeholder={'Enter  Agamikaryakram Adrees'}
+                                    />
+                                </Form.Item>
+                                <span className="textlabel">
+                                    Agamikaryakram Adrees<span className="text-danger">*</span>{' '}
+                                </span>
+                            </Grid>
                             <Grid item xs={12} lg={2} sm={12} xl={2}>
                                 <Form.Item
                                     // label="Description"
-                                    name="batmyadate"
+                                    name="AgamikaryakramDate"
                                     rules={[
                                         {
                                             required: true,
@@ -376,7 +379,7 @@ const Mainbatmaya = () => {
                                 >
                                     <DatePicker
                                         fullWidth
-                                        name="batmyadate"
+                                        name="AgamikaryakramDate"
                                         defaultValue={dayjs(new Date())}
                                         format={dateFormat}
                                         // disabled={[true]}
@@ -386,9 +389,79 @@ const Mainbatmaya = () => {
                                     />
                                 </Form.Item>
                                 <span className="textlabel">
-                                    start Date<span className="text-danger">*</span>{' '}
+                                    Date<span className="text-danger">*</span>{' '}
                                 </span>
                             </Grid>
+                            <Grid item xs={12} lg={2} sm={12} xl={2}>
+                                <Form.Item
+                                    // label="Description"
+                                    name="AgamikaryakramTime"
+                                    type="time"
+                                    // rules={[
+                                    //     {
+                                    //         required: true,
+                                    //         message: 'Please Agamikaryakram Time .'
+                                    //     }
+                                    // ]}
+                                >
+                                    <Input
+                                        name="AgamikaryakramTime"
+                                        type="time"
+                                        value={selectedTime.toFormat('hh:mm A')} // Format as HH:mm
+                                        onChange={handleTimeChange}
+                                        format={Time}
+                                        className="datepicinp textfont"
+                                        placeholder={'Enter  Agamikaryakram Time'}
+                                    />
+                                </Form.Item>
+                                <span className="textlabel">
+                                    Agamikaryakram Time<span className="text-danger">*</span>{' '}
+                                </span>
+                            </Grid>
+                            <Grid item xs={12} lg={4} sm={12} xl={4}>
+                                <Form.Item
+                                    // label="Description"
+                                    name="AgamikaryakramFooterText"
+                                    // rules={[
+                                    //     {
+                                    //         required: true,
+                                    //         message: 'Please Agami Title.'
+                                    //     }
+                                    // ]}
+                                >
+                                    <Input
+                                        name=" AgamikaryakramFooterText"
+                                        className="datepicinp textfont"
+                                        placeholder={'Enter Agamikaryakram Footer Text'}
+                                    />
+                                </Form.Item>
+                                <span className="textlabel">
+                                    Agamikaryakram Footer Text<span className="text-danger">*</span>
+                                </span>
+                            </Grid>
+
+                            <Grid item xs={12} lg={4} sm={12} xl={4}>
+                                <Form.Item
+                                    // label="Description"
+                                    name="AgamikaryakramFooterContact"
+                                    // rules={[
+                                    //     {
+                                    //         required: true,
+                                    //         message: 'Please Agami Title.'
+                                    //     }
+                                    // ]}
+                                >
+                                    <Input
+                                        name=" AgamikaryakramFooterContact"
+                                        className="datepicinp textfont"
+                                        placeholder={'Enter Agamikaryakram Footer Name-Contact'}
+                                    />
+                                </Form.Item>
+                                <span className="textlabel">
+                                    Agamikaryakram Footer Name-Contact<span className="text-danger">*</span>{' '}
+                                </span>
+                            </Grid>
+
                             <Grid item xs={12} lg={1} sm={12} xl={1}>
                                 <Form.Item
                                     // label="Description"
@@ -410,11 +483,14 @@ const Mainbatmaya = () => {
                             {/* <Grid item xs={12} lg={4} sm={12} xl={4}></Grid> */}
                             <Grid item xs={12} lg={4} sm={12} xl={4}>
                                 {id ? (
-                                    batmayadata && batmayadata.imagebatmaya && batmayadata.imagebatmaya != '' ? (
+                                    karyakramdata && karyakramdata.karyakramImage && karyakramdata.karyakramImage != '' ? (
                                         <>
                                             <div>
+                                                <h6 className="updateimage">
+                                                    Karyakram image<span className="text-danger">*</span>
+                                                </h6>
                                                 <img
-                                                    src={URLidimage + batmayadata.imagebatmaya}
+                                                    src={URLidimage + karyakramdata.karyakramImage}
                                                     alt=""
                                                     className="imagePreview img-thumbnail imagespositionid"
                                                 />
@@ -422,7 +498,7 @@ const Mainbatmaya = () => {
                                         </>
                                     ) : (
                                         <>
-                                            <h6 className="text-danger">NO image</h6>
+                                            <h6 className="text-danger">NO Karyakram image</h6>
                                         </>
                                     )
                                 ) : null}
@@ -431,7 +507,7 @@ const Mainbatmaya = () => {
                         <Grid item xs={12} lg={12} sm={12} xl={12}>
                             <Form.Item>
                                 <div>
-                                    <Link to="/MainbatmayaTable">
+                                    <Link to="/KaryakramTable">
                                         <Button
                                             className="btn btn-danger m-1 text-center  float-end"
                                             style={{ paddingtop: '3px', height: '38px' }}
@@ -464,4 +540,4 @@ const Mainbatmaya = () => {
     );
 };
 
-export default Mainbatmaya;
+export default Karyakram;
