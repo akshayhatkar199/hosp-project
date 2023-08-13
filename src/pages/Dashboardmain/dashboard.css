@@ -14,9 +14,9 @@
     /* height: 100vh; */
 }
 .topArea {
-    /* background: linear-gradient(240deg, #005ca1, #d2b6ff73); */
-    background: linear-gradient(0deg, #06833da3, #f3711c);
-    background: linear-gradient(0deg, #06833dcf, #f3711c);
+    background: linear-gradient(240deg, #005ca1, #d2b6ff73);
+    /* background: linear-gradient(0deg, #06833da3, #f3711c); */
+    /* background: linear-gradient(0deg, #06833dcf, #f3711c); */
     height: 229px;
     display: flex;
     padding: 10px 6px;

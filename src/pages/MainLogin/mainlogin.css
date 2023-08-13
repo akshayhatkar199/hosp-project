@@ -14,6 +14,8 @@
     margin-left: 32px;
     border-radius: 28px;
     margin-right: 32px;
+    opacity: 1;
+    background-color: #8a83835c;
     /* box-shadow: #c17474 -3px 0px 17px 1px !important; */
 }
 .login-footer-title{
@@ -29,27 +31,42 @@
 .mybtn {
     background: linear-gradient(240deg, #009FFD, #2A2A72)!important;
     color: white!important;
-    text-align: center;
+    /* text-align: center;
     width: 100px;
     border-radius: 23px;
     padding: -10px;
     padding-top: 0px;
     font-size: 20px;
+    font-weight: 500; */
+    border-radius: 23px;
+    font-size: 12px;
     font-weight: 500;
+    padding: 0 -10px -10px;
+    text-align: center;
+    width: 100px;
 }
 .mycards {
-    border-left: 4px solid #ed1984;
-    border-top: 4px solid #ed1984;
-    border-bottom: 4px solid #1878af;
-    border-right: 4px solid #1878af;
+    border-left: 4px solid #9a8690;
+    border-top: 4px solid #9a8690;
+    border-bottom: 4px solid #9a8690;
+    border-right: 4px solid #9a8690;
+}
+.MuiInputBase-input .inputmtreal{
+    color: white;
+}
+.MuiFormLabel-root {
+    color: white;
+    font-weight: bold;
 }
 .title-login{
     text-align: center;
-    background: -webkit-linear-gradient(#2962ff,#df1279);
+    /* background: -webkit-linear-gradient(#2962ff,#df1279); */
+    background: -webkit-linear-gradient(#f6f6f6,#fffefe);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 29px;
     font-family: auto;
+    font-weight: bold;
 }
 .login-logo{
     height: 134px;
@@ -58,6 +75,10 @@
     top: -71px;
     right: 0;
     left: 34%;
+}
+.MuiInputBase-input{
+    color: white;
+    font-weight: bold
 }
 
 @media only screen and (max-width: 768px){

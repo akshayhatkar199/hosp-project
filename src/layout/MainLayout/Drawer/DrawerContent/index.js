@@ -46,39 +46,8 @@ const items = [
     //     'group'
     // )
     getItem('Dashboard', '1', <DashboardOutlined />),
-    getItem('Website Manage', 'sub2', <AppstoreOutlined />, [
-        getItem('Banner create', '4', <UserOutlined />),
-        // getItem(' Banner Modify', '5', <ProfileOutlined />),
-        getItem('Mainbatmaya ', '6', <UserOutlined />),
-        // getItem('MainbatmayaTable ', '7', <ProfileOutlined />),
-        getItem('Shanchitre ', '8', <UserOutlined />),
-        // getItem('ShanchitryTable ', '9', <ProfileOutlined />)
-        getItem('Karyakram create ', '17', <UserOutlined />),
-        getItem('Karyakram Photo Table ', '18', <UserOutlined />),
-        getItem('PhotoGallary ', '19', <UserOutlined />)
-    ]),
-    getItem('Brand Details', 'sub1', <AppstoreOutlined />, [
-        // getItem('Brand Table ', '2', <ProfileOutlined />),
-        getItem('Brand From', '3', <ProfileOutlined />)
-    ]),
-    getItem('Masters', 'sub3', <AppstoreOutlined />, [
-        getItem('Education create', '11', <UserOutlined />),
-        getItem('Profession create ', '12', <ProfileOutlined />),
-        getItem('Member create ', '13', <ProfileOutlined />),
-        getItem('Employee create ', '14', <ProfileOutlined />),
-        getItem('Unit create ', '15', <ProfileOutlined />),
-        getItem('Family create ', '16', <ProfileOutlined />)
+    getItem('Website Manage', 'sub2', <AppstoreOutlined />, [getItem('Banner create', '4', <UserOutlined />)]),
 
-        // getItem(' Education Details', '12', <ProfileOutlined />)
-    ]),
-    // getItem('Brand Details', 'sub1', <AppstoreOutlined />, [
-    //     getItem('Mainbatmaya ', '2', <ProfileOutlined />),
-    //     getItem('Brand From', '3', <ProfileOutlined />)
-    // ])
-    // getItem('Preserption', '6', <WalletOutlined />),
-    // getItem('Master', '7', <AppstoreOutlined />),
-    // getItem('Report', '8', <QuestionCircleOutlined />),
-    // getItem('Help', '9', <UnorderedListOutlined />),
     getItem('Log Out', '10', <LogoutOutlined />)
 ];
 // submenu keys of first level
@@ -103,38 +72,6 @@ const DrawerContent = () => {
             navigate(`/`);
             console.log(item.key);
         }
-        if (item.key == 2) {
-            navigate(`/BrandTable`);
-            console.log(item.key);
-        }
-        if (item.key == 3) {
-            navigate(`/Brandfrom`);
-            console.log(item.key);
-        }
-        if (item.key == 4) {
-            navigate(`/Banner`);
-            console.log(item.key);
-        }
-        if (item.key == 5) {
-            navigate(`/Modify`);
-            console.log(item.key);
-        }
-        if (item.key == 6) {
-            navigate(`/Mainbatmaya`);
-            console.log(item.key);
-        }
-        if (item.key == 7) {
-            navigate(`/MainbatmayaTable`);
-            console.log(item.key);
-        }
-        if (item.key == 8) {
-            navigate(`/Shanchitre`);
-            console.log(item.key);
-        }
-        if (item.key == 9) {
-            navigate(`/ShanchitryTable`);
-            console.log(item.key);
-        }
         if (item.key == 10) {
             swal({
                 title: 'Are you sure?',
@@ -154,51 +91,6 @@ const DrawerContent = () => {
 
             console.log(item.key);
         }
-        if (item.key == 11) {
-            navigate(`/EducationCreate`);
-            console.log(item.key);
-        }
-        // if (item.key == 12) {
-        //     navigate(`/Educationtable`);
-        //     console.log(item.key);
-        // }
-        if (item.key == 12) {
-            navigate(`/Professionfrom`);
-            console.log(item.key);
-        }
-        // if (item.key == 14) {
-        //     navigate(`/Professiontable`);
-        //     console.log(item.key);
-        // }
-        if (item.key == 13) {
-            navigate(`/MemberCreate`);
-            console.log(item.key);
-        }
-        if (item.key == 14) {
-            navigate(`/EmployeeCreate`);
-            console.log(item.key);
-        }
-        if (item.key == 15) {
-            navigate(`/UnitCreate`);
-            console.log(item.key);
-        }
-        if (item.key == 16) {
-            navigate(`/FamilyCreate`);
-            console.log(item.key);
-        }
-        if (item.key == 17) {
-            navigate(`/Karyakram`);
-            console.log(item.key);
-        }
-        if (item.key == 18) {
-            navigate(`/Photokryakrmtwo`);
-            console.log(item.key);
-        }
-        if (item.key == 19) {
-            navigate(`/PhotoGallary`);
-            console.log(item.key);
-        }
-
         // console.log(`"key" ${key}`);
     };
     return (

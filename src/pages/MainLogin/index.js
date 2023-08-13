@@ -67,7 +67,7 @@ const MainLogin = () => {
                 <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 12 }} lg={{ span: 12 }} xl={{ span: 8 }} xxl={{ span: 8 }}>
                     <Card className="login-card text-center mycards" bordered={false}>
                         {/* <img src={Image} className=" login-logo" /> */}
-                        <h4 className="title-login">Satyajeet Tambe</h4>
+                        <h4 className="title-login">Akshat Shah</h4>
 
                         <Form
                             layout="vertical"
@@ -93,7 +93,7 @@ const MainLogin = () => {
                                 ]}
                             >
                                 {/* <Input style={{ width: '100%' }} /> */}
-                                <TextField fullWidth label="Email" type="email" />
+                                <TextField fullWidth label="Email" type="email" className="inputmtreal" />
                             </Form.Item>
 
                             <Form.Item
@@ -107,7 +107,7 @@ const MainLogin = () => {
                                 ]}
                             >
                                 {/* <Input.Password /> */}
-                                <TextField fullWidth label="Password" type="password" />
+                                <TextField fullWidth label="Password" type="password" className="inputmtreal" />
                             </Form.Item>
 
                             <Form.Item
@@ -120,7 +120,7 @@ const MainLogin = () => {
                                     type="primary"
                                     htmlType="submit"
                                     loading={loading}
-                                    className="btn text-center saveclass mybtn mt-3  "
+                                    className="btn text-center saveclass mybtn mt-3 pb-2  "
                                 >
                                     Login
                                 </Button>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './dashboard.css';
 import Grid from '@mui/material/Unstable_Grid2';
-import Ambulanceimg from '../../image/Indian_National_Congress_hand_logo.png';
+import Logo from '../../image/logo.png';
 import { Link } from 'react-router-dom';
 // import { casepaperCountTotalByApi } from 'components/Helper/details';
 // import { registerpatientCountTotalByApi } from 'components/Helper/member_rgi';
@@ -55,9 +55,9 @@ const Dashboardmain = () => {
                                             <div className="infos" style={{ paddingLeft: '39px' }}>
                                                 <img
                                                     // src="https://speedx.mahavitran.net/assets/img/icons/transport.png"
-                                                    src={Ambulanceimg}
+                                                    src={Logo}
                                                     alt="dashboar"
-                                                    style={{ width: '87px' }}
+                                                    style={{ width: '45%' }}
                                                     // style={{ height='100', width='100'
                                                     // }}
                                                 />
@@ -71,7 +71,7 @@ const Dashboardmain = () => {
                                                         fontFamily: 'emoji'
                                                     }}
                                                 >
-                                                    Satyajeet Tambe
+                                                    Akshat Shah
                                                 </span>
                                             </div>
                                         </div>
@@ -89,24 +89,24 @@ const Dashboardmain = () => {
                                     <div className="cash_wrap">
                                         <div className="total_cash" style={{ display: 'flex' }}></div>
                                     </div>
-                                    <h5 className="cashflowtext">Satyajeet Tambe</h5>
+                                    <h5 className="cashflowtext"> Akshat Shah</h5>
                                     <div className="wrapFlex">
                                         <Grid item xs={12} sm={12} lg={4} xl={4} md={4} className="records_data">
-                                            <div className="data_rec fonclas">Members</div>
+                                            <div className="data_rec fonclas">Contact</div>
                                             <div className="rounded bgcount">
                                                 <span className="countfont">{casepapertotalcounting}</span>
                                             </div>
                                         </Grid>
 
                                         <Grid item xs={12} sm={12} lg={4} xl={4} md={4} className=" records_data">
-                                            <div className="data_rec fonclas">Party Members</div>
+                                            <div className="data_rec fonclas">Windows</div>
                                             <div className="rounded bgcount">
                                                 <span className="countfont">{registertotalcounting}</span>
                                             </div>
                                         </Grid>
 
                                         <Grid item xs={12} sm={12} lg={4} xl={4} md={4} className=" records_data">
-                                            <div className="data_rec fonclas"> List</div>
+                                            <div className="data_rec fonclas"> Doors</div>
                                             <div className="rounded bgcount">
                                                 <span className="countfont">{casepapertotalcounting}</span>
                                             </div>
@@ -129,7 +129,7 @@ const Dashboardmain = () => {
                                                         width="40"
                                                     />
                                                 </div>
-                                                <div className="menus_icon">New Patients</div>
+                                                <div className="menus_icon">New Windows</div>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={12} sm={4} md={3} lg={3} className="for_menus">
@@ -141,7 +141,7 @@ const Dashboardmain = () => {
                                                         width="40"
                                                     />
                                                 </div>
-                                                <div className="menus_icon">Casepaper List</div>
+                                                <div className="menus_icon">Door </div>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={12} sm={4} md={3} lg={3} className="for_menus">
@@ -153,7 +153,7 @@ const Dashboardmain = () => {
                                                         width="40"
                                                     />
                                                 </div>
-                                                <div className="menus_icon">Casepaper Add</div>
+                                                <div className="menus_icon">Sliding Doors Add</div>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={12} sm={4} md={3} lg={3} className="for_menus">
@@ -165,12 +165,12 @@ const Dashboardmain = () => {
                                                         width="40"
                                                     />
                                                 </div>
-                                                <div className="menus_icon">Register List</div>
+                                                <div className="menus_icon">Windows</div>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={12} sm={4} md={3} lg={3} className="for_menus">
                                             {' '}
-                                            <Link to="/Help">
+                                            <Link to="">
                                                 <div className="menus_icon">
                                                     <img src={helpimag} alt="dash" width="40" />
                                                 </div>

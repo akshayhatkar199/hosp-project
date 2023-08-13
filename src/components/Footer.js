@@ -8,7 +8,7 @@ const Footer = () => {
                     <div class="text-white">
                         Designed &amp; Developed By{' '}
                         <a href="https://comtranse.in/" style={{ color: 'blue' }} target="_blank">
-                            Comtranse Technology Pvt.Ltd.
+                            Akshay Hatkar
                         </a>
                     </div>
                 </div>

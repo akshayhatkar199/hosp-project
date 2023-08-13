@@ -1,7 +1,7 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
 // import Imagelogo from '../../image/logo_hospital.png';
-import Imagelogo from '../../image/Indian_National_Congress_hand_logo.png';
+import Imagelogo from '../../image/logo.png';
 import './logo.css';
 /**
  * if you want to use image instead of <svg> uncomment following.
@@ -34,17 +34,6 @@ const Logo = () => {
             /> */}
             <div className=" mt-2 d-flex logomobile">
                 <img src={Imagelogo} alt="react" className="logomainheader" />
-                <div className="headermaintext">
-                    <b className="headertextsatyaje" style={{ fontSize: '18px', float: 'left' }}>
-                        Satyajeet Tambe
-                    </b>
-                    {/* <br/> */}
-                    <small className="mllctext">MLC,Nashik Graduate</small>
-                    {/* <br/> */}
-                    <small className="mharText" style={{ float: 'left', marginTop: '-4px' }}>
-                        Constitute Maharashtra
-                    </small>
-                </div>
             </div>
             {/* <svg width="118" height="35" viewBox="0 0 118 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
