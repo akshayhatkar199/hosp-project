@@ -46,7 +46,15 @@ const items = [
     //     'group'
     // )
     getItem('Dashboard', '1', <DashboardOutlined />),
-    getItem('Website Manage', 'sub2', <AppstoreOutlined />, [getItem('Banner create', '4', <UserOutlined />)]),
+    getItem('Website Manage', 'sub2', <AppstoreOutlined />, [
+        getItem('Logo create', '9', <UserOutlined />),
+        getItem('Banner create', '2', <UserOutlined />),
+        getItem('AboutUs create', '4', <UserOutlined />),
+        getItem('ScienceWork create', '5', <UserOutlined />),
+        getItem('Videogallary create', '6', <UserOutlined />),
+        getItem('Why Us create', '7', <UserOutlined />),
+        getItem('Jumbotron create', '8', <UserOutlined />)
+    ]),
 
     getItem('Log Out', '10', <LogoutOutlined />)
 ];
@@ -70,6 +78,38 @@ const DrawerContent = () => {
         console.log(item);
         if (item.key == 1) {
             navigate(`/`);
+            console.log(item.key);
+        }
+        if (item.key == 2) {
+            navigate(`/Banner`);
+            console.log(item.key);
+        }
+        // if (item.key == 3) {
+        //     navigate(`/BannerModify`);
+        //     console.log(item.key);
+        // }
+        if (item.key == 4) {
+            navigate(`/AboutUs`);
+            console.log(item.key);
+        }
+        if (item.key == 5) {
+            navigate(`/ScienceWork`);
+            console.log(item.key);
+        }
+        if (item.key == 6) {
+            navigate(`/Videogallary`);
+            console.log(item.key);
+        }
+        if (item.key == 7) {
+            navigate(`/Whyus`);
+            console.log(item.key);
+        }
+        if (item.key == 8) {
+            navigate(`/Jumbotron`);
+            console.log(item.key);
+        }
+        if (item.key == 9) {
+            navigate(`/LogoCreate`);
             console.log(item.key);
         }
         if (item.key == 10) {

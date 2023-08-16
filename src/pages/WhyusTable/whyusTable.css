@@ -1,0 +1,63 @@
+.MuiCard-root{
+    margin-bottom: 45px;
+}
+.printsize{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.brandtaitletext{
+    font-size: 17px;
+}
+.plusicon{
+    background-color: white;
+    border-radius: 50%;
+    color: blue;
+    padding-left: 4px;
+    font-size: 14px;
+    font-weight: 900;
+    padding-right: 4px;
+}
+.icon {
+color: black !important;
+}
+.iconcross{
+    background-color: red;
+    color: white !important;
+    border-radius: 50%;
+    padding: 2px;
+    width: 16px;
+    height: 16px;
+}
+.tableheaderbg:where(.css-dev-only-do-not-override-1vtf12y).ant-table-wrapper .ant-table-thead >tr>th, :where(.css-dev-only-do-not-override-1vtf12y).ant-table-wrapper .ant-table-thead >tr>td {
+    position: relative;
+    /* color: rgba(0, 0, 0, 0.88); */
+    color: white;
+    font-weight: 600;
+    text-align: start;
+    background: #0d6efd;
+    border-bottom: 1px solid #0d6efd;
+    /* transition: background 0.2s ease; */
+}
+.btuniconbord{
+    border: 1px solid #e2e9e9;
+}
+.setachbraninput .ant-input-search-button{
+    display: none !important;
+   
+}
+.setachbraninput .ant-input-group {
+   border-top-left-radius: 0% !important;
+   border-top-left-radius: 0% !important;
+   border-right: 1px solid #d9d9d9 !important ;
+}
+.setachbraninput .ant-input-group-addon{
+    border: none;
+    background-color: white;
+}
+.table-row-light {
+    background-color: #cad4d82e;
+    
+}
+.table-row-dark {
+    background-color: #ffffff;
+}
